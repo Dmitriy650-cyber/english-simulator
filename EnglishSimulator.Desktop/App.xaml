@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="EnglishSimulator.Desktop.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:EnglishSimulator.Desktop"
+    xmlns:locator="clr-namespace:EnglishSimulator.Desktop.ViewModels.Locator"
+    StartupUri="Views/Windows/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Infrastructure/Commands/Commands.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <locator:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
