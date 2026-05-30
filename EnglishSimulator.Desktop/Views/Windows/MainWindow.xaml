@@ -6,6 +6,7 @@
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:local="clr-namespace:EnglishSimulator.Desktop.Views.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:EnglishSimulator.Desktop.Views.Pages"
     xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels"
     Width="850"
     Height="600"
@@ -15,6 +16,29 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type vm:CongratulationsViewModel}">
+            <pages:CongratulationsPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DeckViewModel}">
+            <pages:DeckPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DeckSettingsViewModel}">
+            <pages:DeckSettingsPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditViewModel}">
+            <pages:EditPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HelpViewModel}">
+            <pages:HelpPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SimulatorViewModel}">
+            <pages:SimulatorPage />
+        </DataTemplate>
+
+    </Window.Resources>
 
     <Grid>
 
@@ -140,9 +164,22 @@
                                 </fa:IconImage>
                             </Button>
 
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Foreground="{StaticResource titleColor3}"
+                                Text="{Binding Caption}" />
+
                         </StackPanel>
 
                     </Grid>
+
+                    <!--  Content  -->
+                    <ContentControl
+                        Grid.Row="2"
+                        Margin="25"
+                        Content="{Binding CurrentChildPage}" />
 
                 </Grid>
 
