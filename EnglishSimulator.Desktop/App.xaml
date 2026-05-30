@@ -9,6 +9,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Infrastructure/Commands/Commands.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/AppColors.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/ButtonStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <locator:ViewModelLocator x:Key="Locator" />
         </ResourceDictionary>

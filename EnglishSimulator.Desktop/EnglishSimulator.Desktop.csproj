@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\background.jpg" />
+    <None Remove="Resources\Images\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -22,9 +28,12 @@
     <Folder Include="Data\Entities\" />
     <Folder Include="Models\Messages\" />
     <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Resources\Base\" />
-    <Folder Include="Resources\Styles\" />
     <Folder Include="Views\Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\background.jpg" />
+    <Resource Include="Resources\Images\logo.png" />
   </ItemGroup>
 
 </Project>
