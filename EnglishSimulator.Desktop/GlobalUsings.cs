@@ -1,4 +1,5 @@
 ﻿global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
+global using EnglishSimulator.Desktop.Infrastructure.Commands;
 global using EnglishSimulator.Desktop.Services.Interfaces;
 global using EnglishSimulator.Desktop.Services.Registrator;
 global using EnglishSimulator.Desktop.ViewModels.Registrator;

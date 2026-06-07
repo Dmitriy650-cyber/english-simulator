@@ -21,11 +21,13 @@
         </Setter>
 
         <Style.Triggers>
+
             <!--  Button style on hover  -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource panelActiveColor}" />
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
+
         </Style.Triggers>
 
     </Style>
@@ -56,10 +58,12 @@
         </Setter>
 
         <Style.Triggers>
+
             <!--  Button style on hover  -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
+
         </Style.Triggers>
 
     </Style>
@@ -69,6 +73,48 @@
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
+    </Style>
+
+    <!--  Button  -->
+    <Style x:Key="Button" TargetType="Button">
+
+        <!--  Button style  -->
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0,0,0,4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <!--  Button style on hover  -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+            <!--  Button style on pressed  -->
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource panelActiveColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+            </Trigger>
+
+        </Style.Triggers>
+
     </Style>
 
 </ResourceDictionary>

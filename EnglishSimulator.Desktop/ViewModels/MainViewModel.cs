@@ -1,6 +1,4 @@
-﻿using EnglishSimulator.Desktop.Infrastructure.Commands;
-
-namespace EnglishSimulator.Desktop.ViewModels
+﻿namespace EnglishSimulator.Desktop.ViewModels
 {
     internal class MainViewModel : ViewModel
     {
