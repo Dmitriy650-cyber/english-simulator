@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="495"
     d:DesignWidth="800"
+    DataContext="{Binding DeckViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid>
@@ -44,26 +45,93 @@
 
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
+            <TextBlock
+                Grid.Column="0"
+                Foreground="{StaticResource titleColor3}"
+                Text="Deck" />
 
+            <TextBlock
+                Grid.Column="1"
+                Foreground="{StaticResource titleColor3}"
+                Text="New" />
+
+            <TextBlock
+                Grid.Column="2"
+                Foreground="{StaticResource titleColor3}"
+                Text="Learn" />
+
+            <TextBlock
+                Grid.Column="3"
+                Foreground="{StaticResource titleColor3}"
+                Text="Due" />
 
         </Grid>
 
-        <ListView Grid.Row="2"
-                  Background="Transparent"
-                  BorderThickness="0">
+        <ListView
+            Grid.Row="2"
+            HorizontalContentAlignment="Stretch"
+            Background="Transparent"
+            BorderThickness="0"
+            ItemsSource="{Binding TestItems}">
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
+                    <Setter Property="Tag" Value="{StaticResource color2}" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource ListViewItemText}"
+                            Text="Deck 1" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            FontSize="13.5"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource color8}"
+                            Text="10" />
+
+                        <TextBlock
+                            Grid.Column="2"
+                            FontSize="13.5"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource color10}"
+                            Text="10" />
+
+                        <TextBlock
+                            Grid.Column="3"
+                            FontSize="13.5"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource color9}"
+                            Text="1" />
+
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button
+            Grid.Row="3"
+            Content="Start Lesson"
+            Style="{StaticResource Button}"
+            Tag="{StaticResource color1}" />
 
     </Grid>
 
