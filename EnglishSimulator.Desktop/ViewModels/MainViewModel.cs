@@ -188,7 +188,8 @@
 
 		public MainViewModel()
 		{
-			OnShowDeckPageCommandExecuted(null!);
+			//OnShowDeckPageCommandExecuted(null!);
+			OnShowEditPageCommandExecuted(null!);
 		}
 	}
 }
