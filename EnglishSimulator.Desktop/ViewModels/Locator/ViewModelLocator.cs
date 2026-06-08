@@ -5,5 +5,6 @@
         public MainViewModel MainViewModel => App.Services.GetRequiredService<MainViewModel>();
         public DeckViewModel DeckViewModel => App.Services.GetRequiredService<DeckViewModel>();
         public EditViewModel EditViewModel => App.Services.GetRequiredService<EditViewModel>();
+        public SimulatorViewModel SimulatorViewModel => App.Services.GetRequiredService<SimulatorViewModel>();
     }
 }
