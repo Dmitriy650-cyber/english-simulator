@@ -3,9 +3,12 @@ global using EnglishSimulator.Desktop.Infrastructure.Commands;
 global using EnglishSimulator.Desktop.Services.Interfaces;
 global using EnglishSimulator.Desktop.Services.Registrator;
 global using EnglishSimulator.Desktop.ViewModels.Registrator;
+global using EnglishSimulator.Desktop.Data.Registrator;
 global using EnglishSimulator.Desktop.ViewModels.Base;
+global using EnglishSimulator.Desktop.Data.Entities;
 
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Win32;
 

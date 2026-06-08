@@ -14,6 +14,7 @@
 		public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
 			.AddServices()
 			.AddViewModels()
+			.AddDataContext()
 			;
 
 		protected override async void OnStartup(StartupEventArgs e)
