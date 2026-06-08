@@ -3,6 +3,7 @@
     public class Deck
     {
         public int Id { get; set; }
+        public string Name { get; set; } = null!;
         public int CountSentensesPerLesson { get; set; }
 
         public virtual List<Sentence> Sentences { get; set; } = [];
