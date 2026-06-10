@@ -30,18 +30,6 @@ namespace EnglishSimulator.Desktop.Data.Entities
                 return false;
             }
 
-            if (!Enum.GetValues<SentenceState>().Any(n => n.ToString().Equals(sentence.State)))
-            {
-                message = "State is invalid";
-                return false;
-            }
-
-			if (sentence.Stage < 0 || sentence.Stage > DataContextConstants.CountRepetitionIntervalsInDeck)
-			{
-				message = $"Stage should be equal zero and less than {DataContextConstants.CountRepetitionIntervalsInDeck}";
-				return false;
-			}
-
 			if (sentence.DeckId < 1 || sentence.DeckId > int.MaxValue)
 			{
 				message = $"DeckId should be more than 0 and less than {int.MaxValue}";
