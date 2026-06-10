@@ -1,4 +1,6 @@
-﻿namespace EnglishSimulator.Desktop.Data.Entities
+﻿using EnglishSimulator.Desktop.Data.Models;
+
+namespace EnglishSimulator.Desktop.Data.Entities
 {
     public class Sentence
     {
@@ -13,5 +15,47 @@
 
         public virtual Deck? Deck { get; set; }
         public int DeckId { get; set; }
+
+        public static bool IsValid(Sentence sentence, out string message)
+        {
+            if (string.IsNullOrWhiteSpace(sentence.RussianText))
+            {
+                message = "Russian text is required";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(sentence.EnglishText))
+            {
+                message = "English text is required";
+                return false;
+            }
+
+            if (!Enum.GetValues<SentenceState>().Any(n => n.ToString().Equals(sentence.State)))
+            {
+                message = "State is invalid";
+                return false;
+            }
+
+			if (sentence.Stage < 0 || sentence.Stage > DataContextConstants.CountRepetitionIntervalsInDeck)
+			{
+				message = $"Stage should be equal zero and less than {DataContextConstants.CountRepetitionIntervalsInDeck}";
+				return false;
+			}
+
+			if (sentence.DeckId < 1 || sentence.DeckId > int.MaxValue)
+			{
+				message = $"DeckId should be more than 0 and less than {int.MaxValue}";
+				return false;
+			}
+
+            if (sentence.RepeatDate <= DateTime.UtcNow)
+            {
+                message = "RepeatDate should be more than UtcNow";
+                return false;
+            }
+
+			message = "Success";
+            return true;
+        }
     }
 }

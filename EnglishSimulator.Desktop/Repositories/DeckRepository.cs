@@ -9,12 +9,10 @@ namespace EnglishSimulator.Desktop.Repositories
         {
 			try
 			{
-				if (string.IsNullOrWhiteSpace(deck.Name))
-					return RepositoryResponse<Deck>.Fail("Deck name is required");
+				if (!Deck.IsValid(deck, out string message))
+					return RepositoryResponse<Deck>.Fail(message);
 				if (deck.Id != 0)
 					return RepositoryResponse<Deck>.Fail("Deck id should be zero");
-				if (deck.CountSentensesPerLesson < 10 || deck.CountSentensesPerLesson > 1000)
-					return RepositoryResponse<Deck>.Fail("Deck count sentences per lesson should be less than 1000 and more than 10");
 				if (deck.CountSentensesPerLesson == 0)
 					deck.CountSentensesPerLesson = DataContextConstants.CountSentencesPerLesson;
 
