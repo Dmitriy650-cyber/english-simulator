@@ -6,6 +6,7 @@ global using EnglishSimulator.Desktop.ViewModels.Registrator;
 global using EnglishSimulator.Desktop.Data.Registrator;
 global using EnglishSimulator.Desktop.ViewModels.Base;
 global using EnglishSimulator.Desktop.Data.Entities;
+global using EnglishSimulator.Desktop.ViewModels;
 
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.EntityFrameworkCore;

@@ -5,6 +5,7 @@
 		public static IServiceCollection AddServices(this IServiceCollection services) => services
 			.AddSingleton<IMessageBoxService, MessageBoxService>()
 			.AddSingleton<IMessageBusService, MessageBusService>()
+			.AddSingleton<INavigationService, NavigationService>()
 			;
 	}
 }
