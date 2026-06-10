@@ -2,5 +2,9 @@
 {
 	internal class HelpViewModel : ViewModel
 	{
+		public HelpViewModel()
+		{
+			Caption = "HELP";
+		}
 	}
 }

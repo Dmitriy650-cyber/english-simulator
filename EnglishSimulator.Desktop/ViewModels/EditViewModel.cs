@@ -2,26 +2,9 @@
 {
 	internal class EditViewModel : ViewModel
 	{
-		#region Свойства
-
-		#region Заголовок страницы
-
-		/// <summary>
-		/// Заголовок страницы
-		/// </summary>
-		private string? _Caption = "EDITOR";
-
-		/// <summary>
-		/// Заголовок страницы
-		/// </summary>
-		public string? Caption
+		public EditViewModel()
 		{
-			get => _Caption;
-			set => Set(ref _Caption, value);
+			Caption = "EDITOR";
 		}
-
-		#endregion
-
-		#endregion
 	}
 }

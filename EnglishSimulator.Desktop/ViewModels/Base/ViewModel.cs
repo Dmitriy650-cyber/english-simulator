@@ -2,6 +2,15 @@
 {
 	internal class ViewModel : INotifyPropertyChanged
 	{
+		/// <summary>
+		/// Заголовок страницы
+		/// </summary>
+		public string? Caption
+		{
+			get => field;
+			set => Set(ref field, value);
+		}
+
 		public event PropertyChangedEventHandler? PropertyChanged;
 
 		protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = "")

@@ -1,6 +1,4 @@
-﻿using EnglishSimulator.Desktop.Views.Pages;
-
-namespace EnglishSimulator.Desktop.Services
+﻿namespace EnglishSimulator.Desktop.Services
 {
 	internal class NavigationService(MainViewModel mainViewModel, IServiceProvider serviceProvider) : INavigationService
 	{

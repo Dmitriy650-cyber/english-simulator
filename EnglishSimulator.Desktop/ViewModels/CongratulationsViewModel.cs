@@ -2,5 +2,9 @@
 {
 	internal class CongratulationsViewModel : ViewModel
 	{
+		public CongratulationsViewModel()
+		{
+			Caption = "CONGRATULATIONS";
+		}
 	}
 }

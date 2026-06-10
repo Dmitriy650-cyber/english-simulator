@@ -2,5 +2,9 @@
 {
 	internal class DeckSettingsViewModel : ViewModel
 	{
+		public DeckSettingsViewModel()
+		{
+			Caption = "DECK SETTINGS";
+		}
 	}
 }

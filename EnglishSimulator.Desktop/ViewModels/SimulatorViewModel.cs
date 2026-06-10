@@ -4,24 +4,12 @@
 	{
 		#region Свойства
 
-		#region Заголовок страницы
 
-		/// <summary>
-		/// Заголовок страницы
-		/// </summary>
-		private string? _Caption = "SIMULATOR";
+		#endregion
 
-		/// <summary>
-		/// Заголовок страницы
-		/// </summary>
-		public string? Caption
+		public SimulatorViewModel()
 		{
-			get => _Caption;
-			set => Set(ref _Caption, value);
+			Caption = "SIMULATOR";
 		}
-
-		#endregion
-
-		#endregion
 	}
 }
