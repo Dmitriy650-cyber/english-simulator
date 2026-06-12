@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	internal class DeckSettingsViewModel : ViewModel
+	public class DeckSettingsViewModel : ViewModel, ITransientDependency
 	{
 		public DeckSettingsViewModel()
 		{

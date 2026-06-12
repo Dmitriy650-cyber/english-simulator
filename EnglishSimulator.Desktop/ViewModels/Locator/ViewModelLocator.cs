@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels.Locator
 {
-    internal class ViewModelLocator
+    public class ViewModelLocator
     {
         public MainViewModel MainViewModel => App.Services.GetRequiredService<MainViewModel>();
     }

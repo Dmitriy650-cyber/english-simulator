@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Services
 {
-	internal class MessageBusService : IMessageBusService
+	public class MessageBusService : IMessageBusService, ISingletonDependency
 	{
 		private class Subscription<T> : IDisposable
 		{

@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	internal class HelpViewModel : ViewModel
+	public class HelpViewModel : ViewModel, ITransientDependency
 	{
 		public HelpViewModel()
 		{

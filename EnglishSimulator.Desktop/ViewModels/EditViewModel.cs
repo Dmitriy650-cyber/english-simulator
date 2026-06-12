@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	internal class EditViewModel : ViewModel
+	public class EditViewModel : ViewModel, ITransientDependency
 	{
 		public EditViewModel()
 		{

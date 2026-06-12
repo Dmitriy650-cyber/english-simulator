@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Repositories.Interfaces
 {
-	internal interface ISentenceRepository
+	public interface ISentenceRepository
 	{
 		Task<RepositoryResponse<Sentence>> CreateOrUpdateSentenceAsync(Sentence model);
 		Task<RepositoryResponse> DeleteSentenceAsync(int id);

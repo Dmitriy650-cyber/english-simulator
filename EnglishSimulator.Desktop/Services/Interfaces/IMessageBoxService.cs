@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Services.Interfaces
 {
-	internal interface IMessageBoxService
+	public interface IMessageBoxService
 	{
 		public bool OpenFile(string title, out string? selectedFile, string filter = "Все файлы (*.*)|*.*");
 		public bool OpenFiles(string title, out IEnumerable<string>? selectedFiles, string filter = "Все файлы (*.*)|*.*");

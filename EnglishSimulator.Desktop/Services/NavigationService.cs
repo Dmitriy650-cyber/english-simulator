@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Services
 {
-	internal class NavigationService(MainViewModel mainViewModel, IServiceProvider serviceProvider) : INavigationService
+	public class NavigationService(MainViewModel mainViewModel, IServiceProvider serviceProvider) : INavigationService, ISingletonDependency
 	{
 		public void NavigateTo(string pageName)
 		{

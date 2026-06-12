@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	internal class CongratulationsViewModel : ViewModel
+	public class CongratulationsViewModel : ViewModel, ITransientDependency
 	{
 		public CongratulationsViewModel()
 		{

@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop
 {
-    internal static class Program
+    public static class Program
     {
         [STAThread]
         public static void Main(string[] args)

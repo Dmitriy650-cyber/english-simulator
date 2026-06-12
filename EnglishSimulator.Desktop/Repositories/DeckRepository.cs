@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Repositories
 {
-	public class DeckRepository(DataContext context) : IDeckRepository
+	public class DeckRepository(DataContext context) : IDeckRepository, ISingletonDependency
 	{
 		public async Task<RepositoryResponse<Deck[]>> GetDecksAsync() =>
 			RepositoryResponse<Deck[]>.Success(await context.Decks

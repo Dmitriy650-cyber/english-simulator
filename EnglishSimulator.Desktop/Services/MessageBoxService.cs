@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Services
 {
-	internal class MessageBoxService : IMessageBoxService
+	public class MessageBoxService : IMessageBoxService, ISingletonDependency
 	{
 		public bool OpenFile(string title, out string? selectedFile, string filter = "Все файлы (*.*)|*.*")
 		{

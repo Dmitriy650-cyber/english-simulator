@@ -1,11 +1,8 @@
 ﻿global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
 global using EnglishSimulator.Desktop.Models.RepositoryResponses;
+global using EnglishSimulator.Desktop.Common.ScrutorInterfaces;
 global using EnglishSimulator.Desktop.Repositories.Interfaces;
-global using EnglishSimulator.Desktop.Infrastructure.Commands;
-global using EnglishSimulator.Desktop.ViewModels.Registrator;
-global using EnglishSimulator.Desktop.Services.Registrator;
 global using EnglishSimulator.Desktop.Services.Interfaces;
-global using EnglishSimulator.Desktop.Data.Registrator;
 global using EnglishSimulator.Desktop.Views.Pages.Base;
 global using EnglishSimulator.Desktop.ViewModels.Base;
 global using EnglishSimulator.Desktop.Data.Entities;

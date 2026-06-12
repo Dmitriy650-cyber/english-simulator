@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	internal class SimulatorViewModel : ViewModel
+	public class SimulatorViewModel : ViewModel, ITransientDependency
 	{
 		#region Свойства
 

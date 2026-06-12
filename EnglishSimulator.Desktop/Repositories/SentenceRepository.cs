@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Repositories
 {
-	internal class SentenceRepository(DataContext context) : ISentenceRepository
+	public class SentenceRepository(DataContext context) : ISentenceRepository, ISingletonDependency
 	{
 		public async Task<RepositoryResponse<Sentence[]>> GetSentencesByDeckId(int id) =>
 			RepositoryResponse<Sentence[]>.Success(await context.Sentences
