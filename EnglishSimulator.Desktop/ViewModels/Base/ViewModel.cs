@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels.Base
 {
-	internal class ViewModel : INotifyPropertyChanged
+	public class ViewModel : INotifyPropertyChanged
 	{
 		/// <summary>
 		/// Заголовок страницы
@@ -26,5 +26,7 @@
 
 			return true;
 		}
+
+		public virtual Task OnInitializedViewModel() => Task.CompletedTask;
 	}
 }

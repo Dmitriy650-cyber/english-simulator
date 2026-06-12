@@ -23,7 +23,7 @@
 				{
 					deck = context.Decks.Add(model).Entity;
 					await context.RepetitionIntervals
-						.AddRangeAsync(GetStandartRepectitionIntervals(deck.Id))
+						.AddRangeAsync(GetStandartRepetitionIntervals(deck.Id))
 						.ConfigureAwait(false);
 				}
 				else
@@ -65,7 +65,7 @@
 			}
 		}
 
-		private RepetitionInterval[] GetStandartRepectitionIntervals(int deckId) => [
+		private RepetitionInterval[] GetStandartRepetitionIntervals(int deckId) => [
 			new RepetitionInterval{
 				Stage = 0,
 				CountDays = 1,
