@@ -7,7 +7,7 @@
 
 		#endregion
 
-		public override async Task OnInitializedViewModel()
+		public override async Task InitializeViewModelAsync()
 		{
 			Caption = "SIMULATOR";
 		}

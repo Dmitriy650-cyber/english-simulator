@@ -40,8 +40,9 @@
 
 				OnPageInitialized?.Invoke(null, EventArgs.Empty);
 
-				await _viewModel.OnInitializedViewModel();
+				await _viewModel.InitializeViewModelAsync();
 
+				_viewModel.IsLoadedPage = true;
 				_isLoadedPage = true;
 			}
 		}

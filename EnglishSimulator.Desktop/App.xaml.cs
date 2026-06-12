@@ -12,16 +12,16 @@
 		public static IServiceProvider Services => Host.Services;
 
 		public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+			.AddSingleton<DataContext>()
 			.Scan(scan => scan
 				.FromApplicationDependencies()
+				.AddClasses(classes => classes.AssignableTo<ITransientDependency>())
+				.AsSelf()
+				.WithTransientLifetime()
 				.AddClasses(classes => classes.AssignableTo<ISingletonDependency>())
 				.AsSelf()
 				.AsImplementedInterfaces()
-				.WithSingletonLifetime()
-				.AddClasses(classes => classes.AssignableTo<ITransientDependency>())
-				.AsSelf()
-				.WithTransientLifetime())
-			.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=./Data/database.db"));
+				.WithSingletonLifetime());
 
 		protected override async void OnStartup(StartupEventArgs e)
 		{

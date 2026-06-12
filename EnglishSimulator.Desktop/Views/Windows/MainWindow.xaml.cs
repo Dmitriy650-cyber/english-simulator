@@ -1,7 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Windows.Interop;
-
-namespace EnglishSimulator.Desktop.Views.Windows
+﻿namespace EnglishSimulator.Desktop.Views.Windows
 {
     public partial class MainWindow : Window
     {

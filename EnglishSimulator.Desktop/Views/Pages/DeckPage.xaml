@@ -3,11 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:basepage="clr-namespace:EnglishSimulator.Desktop.Views.Pages.Base"
-    xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:local="clr-namespace:EnglishSimulator.Desktop.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels"
+    d:DataContext="{d:DesignInstance Type=vm:DeckViewModel,
+                                     IsDesignTimeCreatable=False}"
     d:DesignHeight="530"
     d:DesignWidth="800"
     ViewModelType="{x:Type vm:DeckViewModel}"
@@ -149,7 +151,7 @@
             HorizontalContentAlignment="Stretch"
             Background="Transparent"
             BorderThickness="0"
-            ItemsSource="{Binding TestItems}">
+            ItemsSource="{Binding Decks}">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
                     <Setter Property="Tag" Value="{StaticResource color2}" />
@@ -199,6 +201,7 @@
         <Button
             Grid.Row="4"
             Margin="20,0"
+            Command="{Binding StartLessonCommand}"
             Content="Start Lesson"
             Style="{StaticResource Button}"
             Tag="{StaticResource color1}" />

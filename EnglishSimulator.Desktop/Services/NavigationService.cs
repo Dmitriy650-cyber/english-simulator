@@ -1,9 +1,11 @@
 ﻿namespace EnglishSimulator.Desktop.Services
 {
-	public class NavigationService(MainViewModel mainViewModel, IServiceProvider serviceProvider) : INavigationService, ISingletonDependency
+	public class NavigationService(IServiceProvider serviceProvider) : INavigationService, ISingletonDependency
 	{
 		public void NavigateTo(string pageName)
 		{
+			var mainViewModel = serviceProvider.GetRequiredService<MainViewModel>();
+
 			switch (pageName)
 			{
 				case nameof(DeckPage):
@@ -29,6 +31,7 @@
 
 		public void NavigateTo<TViewModel>() where TViewModel : ViewModel
 		{
+			var mainViewModel = serviceProvider.GetRequiredService<MainViewModel>();
 			var viewModel = serviceProvider.GetRequiredService<TViewModel>();
 			mainViewModel.CurrentChildPage = viewModel;
 		}

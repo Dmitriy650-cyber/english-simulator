@@ -2,7 +2,9 @@
 global using EnglishSimulator.Desktop.Models.RepositoryResponses;
 global using EnglishSimulator.Desktop.Common.ScrutorInterfaces;
 global using EnglishSimulator.Desktop.Repositories.Interfaces;
+global using EnglishSimulator.Desktop.Infrastructure.Commands;
 global using EnglishSimulator.Desktop.Services.Interfaces;
+global using EnglishSimulator.Desktop.Common.Extensions;
 global using EnglishSimulator.Desktop.Views.Pages.Base;
 global using EnglishSimulator.Desktop.ViewModels.Base;
 global using EnglishSimulator.Desktop.Data.Entities;
@@ -18,9 +20,12 @@ global using Microsoft.Win32;
 
 global using System.Runtime.CompilerServices;
 global using System.Collections.ObjectModel;
+global using System.Runtime.InteropServices;
 global using System.Windows.Controls;
+global using System.Windows.Interop;
 global using System.ComponentModel;
 global using System.Windows.Input;
 global using System.Globalization;
 global using System.Windows.Data;
 global using System.Windows;
+global using System.IO;

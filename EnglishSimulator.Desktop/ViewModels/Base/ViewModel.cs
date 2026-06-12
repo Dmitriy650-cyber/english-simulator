@@ -56,7 +56,7 @@
 			return true;
 		}
 
-		public virtual Task OnInitializedViewModel() => Task.CompletedTask;
+		public virtual Task InitializeViewModelAsync() => Task.CompletedTask;
 
 		protected async Task MakeRepositoryRequestAsync(Func<Task> request, string loadingText = "Loading...")
 		{
@@ -69,7 +69,7 @@
 			}
 			catch (Exception ex)
 			{
-				MessageBoxService.Error("Error", ex.Message);
+				MessageBoxService.Error(ex.Message);
 			}
 			finally
 			{
