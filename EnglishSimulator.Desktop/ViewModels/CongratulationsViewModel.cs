@@ -1,8 +1,8 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class CongratulationsViewModel : ViewModel, ITransientDependency
+	public class CongratulationsViewModel(IMessageBoxService messageBoxService) : ViewModel(messageBoxService), ITransientDependency
 	{
-		public CongratulationsViewModel()
+		public override async Task OnInitializedViewModel()
 		{
 			Caption = "CONGRATULATIONS";
 		}

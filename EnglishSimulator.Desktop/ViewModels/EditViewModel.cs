@@ -1,8 +1,8 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class EditViewModel : ViewModel, ITransientDependency
+	public class EditViewModel(IMessageBoxService messageBoxService) : ViewModel(messageBoxService), ITransientDependency
 	{
-		public EditViewModel()
+		public override async Task OnInitializedViewModel()
 		{
 			Caption = "EDITOR";
 		}

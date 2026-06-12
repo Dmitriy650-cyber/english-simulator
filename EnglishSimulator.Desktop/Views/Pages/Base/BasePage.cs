@@ -37,7 +37,9 @@
 			{
 				DataContext = _serviceProvider.GetRequiredService(ViewModelType);
 				_viewModel = (ViewModel)DataContext;
+
 				OnPageInitialized?.Invoke(null, EventArgs.Empty);
+
 				await _viewModel.OnInitializedViewModel();
 
 				_isLoadedPage = true;

@@ -1,8 +1,8 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class HelpViewModel : ViewModel, ITransientDependency
+	public class HelpViewModel(IMessageBoxService messageBoxService) : ViewModel(messageBoxService), ITransientDependency
 	{
-		public HelpViewModel()
+		public override async Task OnInitializedViewModel()
 		{
 			Caption = "HELP";
 		}

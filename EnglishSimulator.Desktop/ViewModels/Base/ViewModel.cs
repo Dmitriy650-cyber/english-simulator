@@ -1,11 +1,40 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels.Base
 {
-	public class ViewModel : INotifyPropertyChanged
+	public class ViewModel(IMessageBoxService messageBoxService) : INotifyPropertyChanged
 	{
+		protected IMessageBoxService MessageBoxService = messageBoxService;
+
 		/// <summary>
 		/// Заголовок страницы
 		/// </summary>
 		public string? Caption
+		{
+			get => field;
+			set => Set(ref field, value);
+		}
+
+		/// <summary>
+		/// Занята ли страница загрузкой данных?
+		/// </summary>
+		public bool IsBusy
+		{
+			get => field;
+			set => Set(ref field, value);
+		}
+
+		/// <summary>
+		/// Текст, отображаемый при загрузке данных
+		/// </summary>
+		public string? LoadingText
+		{
+			get => field;
+			set => Set(ref field, value);
+		}
+
+		/// <summary>
+		/// Загрузилась ли страница?
+		/// </summary>
+		public bool IsLoadedPage
 		{
 			get => field;
 			set => Set(ref field, value);
@@ -28,5 +57,24 @@
 		}
 
 		public virtual Task OnInitializedViewModel() => Task.CompletedTask;
+
+		protected async Task MakeRepositoryRequestAsync(Func<Task> request, string loadingText = "Loading...")
+		{
+			IsBusy = true;
+			LoadingText = loadingText;
+
+			try
+			{
+				await request.Invoke();
+			}
+			catch (Exception ex)
+			{
+				MessageBoxService.Error("Error", ex.Message);
+			}
+			finally
+			{
+				IsBusy = false;
+			}
+		}
 	}
 }

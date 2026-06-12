@@ -1,13 +1,13 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class SimulatorViewModel : ViewModel, ITransientDependency
+	public class SimulatorViewModel(IMessageBoxService messageBoxService) : ViewModel(messageBoxService), ITransientDependency
 	{
 		#region Свойства
 
 
 		#endregion
 
-		public SimulatorViewModel()
+		public override async Task OnInitializedViewModel()
 		{
 			Caption = "SIMULATOR";
 		}

@@ -1,8 +1,8 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class DeckViewModel : ViewModel, ITransientDependency
+	public class DeckViewModel(IMessageBoxService messageBoxService) : ViewModel(messageBoxService), ITransientDependency
 	{
-		public DeckViewModel()
+		public override async Task OnInitializedViewModel()
 		{
 			Caption = "DECKS";
 		}

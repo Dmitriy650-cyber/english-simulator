@@ -19,7 +19,7 @@
 
 		#endregion
 
-		public MainViewModel(IServiceProvider serviceProvider)
+		public MainViewModel(IServiceProvider serviceProvider, IMessageBoxService messageBoxService) : base(messageBoxService)
 		{
 			CurrentChildPage = serviceProvider.GetRequiredService<DeckViewModel>();
 		}
