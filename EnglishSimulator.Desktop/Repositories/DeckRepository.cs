@@ -1,15 +1,15 @@
 ﻿namespace EnglishSimulator.Desktop.Repositories
 {
-    public class DeckRepository(DataContext context)
-    {
+	public class DeckRepository(DataContext context) : IDeckRepository
+	{
 		public async Task<RepositoryResponse<Deck[]>> GetDecksAsync() =>
 			RepositoryResponse<Deck[]>.Success(await context.Decks
 				.AsNoTracking()
 				.ToArrayAsync()
 				.ConfigureAwait(false));
 
-        public async Task<RepositoryResponse<Deck>> CreateOrUpdateDeckAsync(Deck model)
-        {
+		public async Task<RepositoryResponse<Deck>> CreateOrUpdateDeckAsync(Deck model)
+		{
 			try
 			{
 				if (!Deck.IsValid(model, out string message))
@@ -44,7 +44,7 @@
 			{
 				return RepositoryResponse<Deck>.Fail(ex.Message);
 			}
-        }
+		}
 
 		public async Task<RepositoryResponse> DeleteDeckAsync(int id)
 		{
@@ -97,5 +97,5 @@
 				DeckId = deckId
 			},
 			];
-    }
+	}
 }

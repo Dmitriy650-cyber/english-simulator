@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Messages\" />
-    <Folder Include="Repositories\Interfaces\" />
     <Folder Include="Views\Components\" />
   </ItemGroup>
 

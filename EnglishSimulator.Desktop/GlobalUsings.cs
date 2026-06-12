@@ -1,5 +1,6 @@
 ﻿global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
 global using EnglishSimulator.Desktop.Models.RepositoryResponses;
+global using EnglishSimulator.Desktop.Repositories.Interfaces;
 global using EnglishSimulator.Desktop.Infrastructure.Commands;
 global using EnglishSimulator.Desktop.ViewModels.Registrator;
 global using EnglishSimulator.Desktop.Services.Registrator;

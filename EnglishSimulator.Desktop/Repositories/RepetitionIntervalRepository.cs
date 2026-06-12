@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.Repositories
 {
-	internal class RepetitionIntervalRepository(DataContext context)
+	internal class RepetitionIntervalRepository(DataContext context) : IRepetitionIntervalRepository
 	{
 		public async Task<RepositoryResponse<RepetitionInterval[]>> GetRepetitionIntervalsByDeckId(int id) =>
 			RepositoryResponse<RepetitionInterval[]>.Success(await context.RepetitionIntervals
