@@ -1,4 +1,6 @@
 ﻿global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
+global using EnglishSimulator.Desktop.ViewModels.DialogViewModels;
+global using EnglishSimulator.Desktop.Views.Windows.DialogWindows;
 global using EnglishSimulator.Desktop.Models.RepositoryResponses;
 global using EnglishSimulator.Desktop.Common.ScrutorInterfaces;
 global using EnglishSimulator.Desktop.Repositories.Interfaces;

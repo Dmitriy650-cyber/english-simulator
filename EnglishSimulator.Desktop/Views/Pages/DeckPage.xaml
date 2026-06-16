@@ -97,6 +97,7 @@
 
             <Button
                 Grid.Column="0"
+                Command="{Binding AddDeckCommand}"
                 Content="Add Deck"
                 Style="{StaticResource Button}"
                 Tag="{StaticResource color9}" />

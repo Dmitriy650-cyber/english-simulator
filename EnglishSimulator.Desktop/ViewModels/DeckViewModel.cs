@@ -1,6 +1,10 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels
 {
-	public class DeckViewModel(IMessageBoxService messageBoxService, INavigationService navigationService, IDeckRepository deckRepository) : ViewModel(messageBoxService), ITransientDependency
+	public class DeckViewModel(
+		IMessageBoxService messageBoxService, 
+		INavigationService navigationService, 
+		IDeckRepository deckRepository,
+		IDialogService dialogService) : ViewModel(messageBoxService), ITransientDependency
 	{
 		public ObservableCollection<Deck> Decks { get; set; } = [];
 
@@ -25,6 +29,20 @@
 		public ICommand? StartLessonCommand => new LambdaCommand(() =>
 		{
 			navigationService.NavigateTo(nameof(SimulatorPage));
+		});
+
+		public ICommand? AddDeckCommand => new LambdaCommand(async () =>
+		{
+			var result = await dialogService.ShowAddDeckDialogAsync();
+
+			if (result != null)
+			{
+				MessageBoxService.Information(result);
+			}
+			else
+			{
+				MessageBoxService.Information("Cancel");
+			}
 		});
 	}
 }
