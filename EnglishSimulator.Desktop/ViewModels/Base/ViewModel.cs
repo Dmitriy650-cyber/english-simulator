@@ -1,6 +1,6 @@
 ﻿namespace EnglishSimulator.Desktop.ViewModels.Base
 {
-	public class ViewModel(IMessageBoxService messageBoxService) : INotifyPropertyChanged
+	public class ViewModel(IMessageBoxService messageBoxService) : ViewModelBase
 	{
 		protected IMessageBoxService MessageBoxService = messageBoxService;
 
@@ -38,22 +38,6 @@
 		{
 			get => field;
 			set => Set(ref field, value);
-		}
-
-		public event PropertyChangedEventHandler? PropertyChanged;
-
-		protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = "")
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-		{
-			if (Equals(field, value)) return false;
-			field = value;
-			OnPropertyChanged(propertyName);
-
-			return true;
 		}
 
 		public virtual Task InitializeViewModelAsync() => Task.CompletedTask;

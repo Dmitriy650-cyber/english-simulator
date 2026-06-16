@@ -104,12 +104,14 @@
 
             <Button
                 Grid.Column="1"
+                Command="{Binding EditDeckCommand}"
                 Content="Edit Deck"
                 Style="{StaticResource Button}"
                 Tag="{StaticResource color6}" />
 
             <Button
                 Grid.Column="2"
+                Command="{Binding DeleteDeckCommand}"
                 Content="Delete Deck"
                 Style="{StaticResource Button}"
                 Tag="{StaticResource color4}" />

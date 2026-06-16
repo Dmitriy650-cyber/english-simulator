@@ -26,11 +26,19 @@
 			});
 		}
 
+		#region Команды
+
+		/// <summary>
+		/// Начать урок
+		/// </summary>
 		public ICommand? StartLessonCommand => new LambdaCommand(() =>
 		{
 			navigationService.NavigateTo(nameof(SimulatorPage));
 		});
 
+		/// <summary>
+		/// Добавить новую колоду
+		/// </summary>
 		public ICommand? AddDeckCommand => new LambdaCommand(async () =>
 		{
 			var result = await dialogService.ShowAddDeckDialogAsync();
@@ -44,5 +52,32 @@
 				MessageBoxService.Information("Cancel");
 			}
 		});
+
+		/// <summary>
+		/// Перейти на страницу редактирования колоды
+		/// </summary>
+		public ICommand? EditDeckCommand => new LambdaCommand(() =>
+		{
+			navigationService.NavigateTo(nameof(EditPage));
+		});
+
+		/// <summary>
+		/// Удалить выбранную колоду
+		/// </summary>
+		public ICommand? DeleteDeckCommand => new LambdaCommand(async () =>
+		{
+			var result = await dialogService.ShowDialogAsync();
+
+			if (result == true)
+			{
+				MessageBoxService.Information("True");
+			}
+			else
+			{
+				MessageBoxService.Information("False");
+			}
+		});
+
+		#endregion
 	}
 }

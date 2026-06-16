@@ -1,4 +1,7 @@
-﻿global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
+﻿global using EnglishSimulator.Desktop.ViewModels.DialogViewModels.Common;
+global using EnglishSimulator.Desktop.Views.Windows.DialogWindows.Common;
+global using EnglishSimulator.Desktop.ViewModels.DialogViewModels.Base;
+global using EnglishSimulator.Desktop.Infrastructure.Commands.Base;
 global using EnglishSimulator.Desktop.ViewModels.DialogViewModels;
 global using EnglishSimulator.Desktop.Views.Windows.DialogWindows;
 global using EnglishSimulator.Desktop.Models.RepositoryResponses;
