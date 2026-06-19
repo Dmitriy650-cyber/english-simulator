@@ -1,4 +1,4 @@
-﻿namespace EnglishSimulator.Desktop.ViewModels.DialogViewModels.Common
+﻿namespace EnglishSimulator.Desktop.ViewModels.DialogViewModels
 {
     public class DialogViewModel : DialogViewModelBase, ITransientDependency
     {

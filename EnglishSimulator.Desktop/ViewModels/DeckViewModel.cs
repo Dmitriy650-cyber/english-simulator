@@ -1,16 +1,37 @@
-﻿namespace EnglishSimulator.Desktop.ViewModels
+﻿using EnglishSimulator.Desktop.Models;
+using EnglishSimulator.Desktop.Services;
+
+namespace EnglishSimulator.Desktop.ViewModels
 {
 	public class DeckViewModel(
 		IMessageBoxService messageBoxService, 
 		INavigationService navigationService, 
 		IDeckRepository deckRepository,
-		IDialogService dialogService) : ViewModel(messageBoxService), ITransientDependency
+		IDialogService dialogService,
+		IMessageBusService messageBusService) : ViewModel(messageBoxService), ITransientDependency
 	{
-		public ObservableCollection<Deck> Decks { get; set; } = [];
+		public ObservableCollection<DeckModel> Decks { get; set; } = [];
+
+		/// <summary>
+		/// Выбранная колода
+		/// </summary>
+		public DeckModel? SelectedDeck
+		{
+			get => field;
+			set => Set(ref field, value);
+		}
 
 		public override async Task InitializeViewModelAsync()
 		{
 			Caption = "DECKS";
+
+			await GetNewDecksAsync();
+		}
+
+		private async Task GetNewDecksAsync()
+		{
+			if (Decks.Count > 0)
+				Decks.Clear();
 
 			await MakeRepositoryRequestAsync(async () =>
 			{
@@ -22,7 +43,15 @@
 					return;
 				}
 
-				Decks.AddRange(response.Data);
+				foreach (var deck in response.Data)
+				{
+					var deckModel = new DeckModel();
+					deckModel.Deck = deck;
+					deckModel.CountNewSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.New)).Count();
+					deckModel.CountLearnSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Learn)).Count();
+					deckModel.CountDueSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Due)).Count();
+					Decks.Add(deckModel);
+				}
 			});
 		}
 
@@ -34,22 +63,29 @@
 		public ICommand? StartLessonCommand => new LambdaCommand(() =>
 		{
 			navigationService.NavigateTo(nameof(SimulatorPage));
-		});
+		}, () => SelectedDeck is not null);
 
 		/// <summary>
 		/// Добавить новую колоду
 		/// </summary>
 		public ICommand? AddDeckCommand => new LambdaCommand(async () =>
 		{
-			var result = await dialogService.ShowAddDeckDialogAsync();
+			var result = await dialogService.ShowAddDeckDialogAsync("ENTER DECK NAME");
 
 			if (result != null)
 			{
-				MessageBoxService.Information(result);
-			}
-			else
-			{
-				MessageBoxService.Information("Cancel");
+				var response = await deckRepository.CreateOrUpdateDeckAsync(new Deck
+				{
+					Name = result
+				});
+				
+				if (response.IsFail)
+				{
+					MessageBoxService.Error(response.ErrorMessage);
+					return;
+				}
+
+				await GetNewDecksAsync();
 			}
 		});
 
@@ -59,7 +95,9 @@
 		public ICommand? EditDeckCommand => new LambdaCommand(() =>
 		{
 			navigationService.NavigateTo(nameof(EditPage));
-		});
+			messageBusService.Send<DeckViewModelToEditViewModelMessage>(
+				new DeckViewModelToEditViewModelMessage { Deck = SelectedDeck!.Deck! });
+		}, () => SelectedDeck is not null);
 
 		/// <summary>
 		/// Удалить выбранную колоду
@@ -70,13 +108,17 @@
 
 			if (result == true)
 			{
-				MessageBoxService.Information("True");
+				var response = await deckRepository.DeleteDeckAsync(SelectedDeck!.Deck!.Id);
+
+				if (response.IsFail)
+				{
+					MessageBoxService.Error(response.ErrorMessage);
+					return;
+				}
+
+				await GetNewDecksAsync();
 			}
-			else
-			{
-				MessageBoxService.Information("False");
-			}
-		});
+		}, () => SelectedDeck is not null);
 
 		#endregion
 	}

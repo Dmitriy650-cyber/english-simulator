@@ -17,7 +17,7 @@
                 return false;
 			}
 
-            if (deck.CountSentensesPerLesson < 10 || deck.CountSentensesPerLesson > 1000)
+            if (deck.CountSentensesPerLesson != 0 && (deck.CountSentensesPerLesson < 10 || deck.CountSentensesPerLesson > 1000))
             {
                 message = "Deck count sentences per lesson should be less than 1000 and more than 10";
                 return false;

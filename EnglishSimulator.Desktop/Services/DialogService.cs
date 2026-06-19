@@ -2,11 +2,11 @@
 {
     public class DialogService : IDialogService, ISingletonDependency
     {
-        public Task<string?> ShowAddDeckDialogAsync()
+        public Task<string?> ShowAddDeckDialogAsync(string title)
         {
-            var dialog = new AddDeckWindow
+            var dialog = new InputDialogWindow
             {
-                DataContext = new AddDeckViewModel()
+                DataContext = new InputDialogViewModel(title)
             };
 
             return dialog.ShowAddDeckWindowAsync();
@@ -20,6 +20,16 @@
             };
 
             return dialog.ShowDialogWindowAsync();
+        }
+
+        public Task<Sentence?> ShowSentenceDialogAsync(Sentence? sentence)
+        {
+            var dialog = new SentenceDialogWindow
+            {
+                DataContext = new SentenceDialogViewModel(sentence)
+            };
+
+            return dialog.ShowSentenceDialogWindowAsync();
         }
     }
 }

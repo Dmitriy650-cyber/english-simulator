@@ -1,14 +1,12 @@
-﻿using EnglishSimulator.Desktop.Data.Models;
-
-namespace EnglishSimulator.Desktop.Data.Entities
+﻿namespace EnglishSimulator.Desktop.Data.Entities
 {
     public class Sentence
     {
         public int Id { get; set; }
         public string RussianText { get; set; } = null!;
         public string EnglishText { get; set; } = null!;
-        public string? RussianAudio { get; set; }
-        public string? EnglishAudio { get; set; }
+        public string RussianAudio { get; set; } = null!;
+        public string EnglishAudio { get; set; } = null!;
         public string State { get; set; } = null!;
         public int Stage { get; set; }
         public DateTime RepeatDate { get; set; }
@@ -27,6 +25,18 @@ namespace EnglishSimulator.Desktop.Data.Entities
             if (string.IsNullOrWhiteSpace(sentence.EnglishText))
             {
                 message = "English text is required";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(sentence.RussianAudio))
+            {
+                message = "Russian audio is required";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(sentence.EnglishAudio))
+            {
+                message = "English audio is required";
                 return false;
             }
 

@@ -1,4 +1,4 @@
-﻿namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows.Common
+﻿namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для DialogWindow.xaml

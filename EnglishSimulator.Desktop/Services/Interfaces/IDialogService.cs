@@ -2,7 +2,8 @@
 {
     public interface IDialogService
     {
-		Task<string?> ShowAddDeckDialogAsync();
+		Task<string?> ShowAddDeckDialogAsync(string title);
 		Task<bool> ShowDialogAsync(string question = "Are you sure?");
+		Task<Sentence?> ShowSentenceDialogAsync(Sentence? sentence);
 	}
 }

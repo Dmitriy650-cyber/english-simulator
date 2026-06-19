@@ -3,7 +3,7 @@
     public class ViewModelLocator
     {
         public MainViewModel MainViewModel => App.Services.GetRequiredService<MainViewModel>();
-        public AddDeckViewModel AddDeckViewModel => App.Services.GetRequiredService<AddDeckViewModel>();
+        public InputDialogViewModel InputDialogViewModel => App.Services.GetRequiredService<InputDialogViewModel>();
         public DialogViewModel DialogViewModel => App.Services.GetRequiredService<DialogViewModel>();
     }
 }

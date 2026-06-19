@@ -154,7 +154,8 @@
             HorizontalContentAlignment="Stretch"
             Background="Transparent"
             BorderThickness="0"
-            ItemsSource="{Binding Decks}">
+            ItemsSource="{Binding Decks}"
+            SelectedItem="{Binding SelectedDeck}">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
                     <Setter Property="Tag" Value="{StaticResource color2}" />
@@ -173,28 +174,28 @@
                         <TextBlock
                             Grid.Column="0"
                             Style="{StaticResource ListViewItemText}"
-                            Text="Deck 1" />
+                            Text="{Binding Deck.Name}" />
 
                         <TextBlock
                             Grid.Column="1"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color8}"
-                            Text="10" />
+                            Text="{Binding CountNewSentences}" />
 
                         <TextBlock
                             Grid.Column="2"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color10}"
-                            Text="10" />
+                            Text="{Binding CountLearnSentences}" />
 
                         <TextBlock
                             Grid.Column="3"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color9}"
-                            Text="1" />
+                            Text="{Binding CountDueSentences}" />
 
                     </Grid>
                 </DataTemplate>

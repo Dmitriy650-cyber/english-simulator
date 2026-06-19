@@ -4,6 +4,8 @@
 	{
 		public async Task<RepositoryResponse<Deck[]>> GetDecksAsync() =>
 			RepositoryResponse<Deck[]>.Success(await context.Decks
+				.Include(n => n.Sentences)
+				.Include(n => n.RepetitionIntervals)
 				.AsNoTracking()
 				.ToArrayAsync()
 				.ConfigureAwait(false));
@@ -18,13 +20,12 @@
 					model.CountSentensesPerLesson = DataContextConstants.CountSentencesPerLesson;
 
 				Deck? deck = new();
+				var createMode = false;
 
 				if (model.Id == 0)
 				{
 					deck = context.Decks.Add(model).Entity;
-					await context.RepetitionIntervals
-						.AddRangeAsync(GetStandartRepetitionIntervals(deck.Id))
-						.ConfigureAwait(false);
+					createMode = true;
 				}
 				else
 				{
@@ -37,6 +38,14 @@
 				}
 
 				await context.SaveChangesAsync().ConfigureAwait(false);
+
+				if (createMode)
+				{
+					await context.RepetitionIntervals
+						.AddRangeAsync(GetStandartRepetitionIntervals(deck.Id))
+						.ConfigureAwait(false);
+					await context.SaveChangesAsync().ConfigureAwait(false);
+				}
 
 				return RepositoryResponse<Deck>.Success(deck);
 			}

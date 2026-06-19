@@ -1,11 +1,11 @@
 ﻿namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для AddDeckWindow.xaml
-    /// </summary>
-    public partial class AddDeckWindow : Window
+	/// <summary>
+	/// Логика взаимодействия для InputDialogWindow.xaml
+	/// </summary>
+	public partial class InputDialogWindow : Window
     {
-        public AddDeckWindow()
+        public InputDialogWindow()
         {
             InitializeComponent();
         }
@@ -14,14 +14,14 @@
         {
             var taskCompletionSource = new TaskCompletionSource<string?>();
 
-            AddDeckViewModel viewModel = (AddDeckViewModel)DataContext;
+			InputDialogViewModel viewModel = (InputDialogViewModel)DataContext;
             if (viewModel is { })
             {
                 viewModel.Closed += (success) =>
                 {
                     if (success)
                     {
-                        taskCompletionSource.SetResult(viewModel.DeckName);
+                        taskCompletionSource.SetResult(viewModel.InputText);
                     }
                     else
                     {
