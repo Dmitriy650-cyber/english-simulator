@@ -40,17 +40,11 @@
                 return false;
             }
 
-			if (sentence.DeckId < 1 || sentence.DeckId > int.MaxValue)
+			if (sentence.Id != 0 && (sentence.DeckId < 1 || sentence.DeckId > int.MaxValue))
 			{
 				message = $"DeckId should be more than 0 and less than {int.MaxValue}";
 				return false;
 			}
-
-            if (sentence.RepeatDate <= DateTime.UtcNow)
-            {
-                message = "RepeatDate should be more than UtcNow";
-                return false;
-            }
 
 			message = "Success";
             return true;

@@ -19,7 +19,7 @@
 
 		#endregion
 
-		private void CloseDialog(bool result)
+		protected void CloseDialog(bool result)
 		{
 			if (!_isClosed)
 			{

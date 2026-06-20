@@ -6,6 +6,7 @@ global using EnglishSimulator.Desktop.Models.RepositoryResponses;
 global using EnglishSimulator.Desktop.Common.ScrutorInterfaces;
 global using EnglishSimulator.Desktop.Repositories.Interfaces;
 global using EnglishSimulator.Desktop.Infrastructure.Commands;
+global using EnglishSimulator.Desktop.Models.DialogMessages;
 global using EnglishSimulator.Desktop.Services.Interfaces;
 global using EnglishSimulator.Desktop.Common.Extensions;
 global using EnglishSimulator.Desktop.Views.Pages.Base;
@@ -33,3 +34,5 @@ global using System.Globalization;
 global using System.Windows.Data;
 global using System.Windows;
 global using System.IO;
+
+global using NAudio.Wave;

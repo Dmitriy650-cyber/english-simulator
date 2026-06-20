@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels.DialogViewModels"
     Title="SentenceDialogWindow"
-    Width="600"
+    Width="800"
     Height="400"
     d:DataContext="{d:DesignInstance Type=vm:SentenceDialogViewModel,
                                      IsDesignTimeCreatable=False}"
@@ -60,7 +60,7 @@
 
                     <Button
                         x:Name="btnClose"
-                        Command="{Binding CancelCommand}"
+                        Command="{Binding NewCancelCommand}"
                         Style="{StaticResource controlButton}"
                         Tag="{StaticResource color4}">
                         <fa:IconImage Icon="Xmark" Style="{StaticResource contolButtonIcon}" />
@@ -108,18 +108,27 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="9*" />
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
+                        <TextBox
                             Grid.Column="0"
                             Height="28"
+                            Margin="0,5,0,0"
+                            Padding="0,0,0,0"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource panelColor}"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0,0,0,0"
+                            Cursor="Arrow"
+                            Focusable="False"
                             FontSize="13"
                             FontWeight="Medium"
                             Foreground="White"
+                            IsReadOnly="True"
+                            IsReadOnlyCaretVisible="False"
                             Text="{Binding RussianAudio}" />
 
                         <Button
@@ -135,6 +144,7 @@
 
                         <Button
                             Grid.Column="2"
+                            Command="{Binding CreateRussianAudioCommand}"
                             Style="{StaticResource iconButton}"
                             Tag="{StaticResource color3}">
                             <fa:IconImage
@@ -188,18 +198,27 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="9*" />
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
+                        <TextBox
                             Grid.Column="0"
                             Height="28"
+                            Margin="0,5,0,0"
+                            Padding="0,0,0,0"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource panelColor}"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0,0,0,0"
+                            Cursor="Arrow"
+                            Focusable="False"
                             FontSize="13"
                             FontWeight="Medium"
                             Foreground="White"
+                            IsReadOnly="True"
+                            IsReadOnlyCaretVisible="False"
                             Text="{Binding EnglishAudio}" />
 
                         <Button
@@ -215,6 +234,7 @@
 
                         <Button
                             Grid.Column="2"
+                            Command="{Binding CreateEnglishAudioCommand}"
                             Style="{StaticResource iconButton}"
                             Tag="{StaticResource color3}">
                             <fa:IconImage
@@ -239,14 +259,14 @@
 
                     <Button
                         Grid.Column="0"
-                        Command="{Binding CancelCommand}"
+                        Command="{Binding NewCancelCommand}"
                         Content="Cancel"
                         Style="{StaticResource Button}"
                         Tag="{StaticResource color4}" />
 
                     <Button
                         Grid.Column="1"
-                        Command="{Binding OkCommand}"
+                        Command="{Binding NewOkCommand}"
                         Content="Ok"
                         Style="{StaticResource Button}"
                         Tag="{StaticResource color9}" />

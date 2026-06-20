@@ -4,6 +4,8 @@
 	{
 		protected IMessageBoxService MessageBoxService = messageBoxService;
 
+		#region Свойства
+
 		/// <summary>
 		/// Заголовок страницы
 		/// </summary>
@@ -39,6 +41,10 @@
 			get => field;
 			set => Set(ref field, value);
 		}
+
+		#endregion
+
+		public object? InputData;
 
 		public virtual Task InitializeViewModelAsync() => Task.CompletedTask;
 

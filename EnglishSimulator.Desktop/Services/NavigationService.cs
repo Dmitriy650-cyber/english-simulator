@@ -2,29 +2,42 @@
 {
 	public class NavigationService(IServiceProvider serviceProvider) : INavigationService, ISingletonDependency
 	{
-		public void NavigateTo(string pageName)
+		public void NavigateTo(string pageName, object inputData)
 		{
 			var mainViewModel = serviceProvider.GetRequiredService<MainViewModel>();
+			ViewModel viewModel;
 
 			switch (pageName)
 			{
 				case nameof(DeckPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<DeckViewModel>();
+					viewModel = serviceProvider.GetRequiredService<DeckViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 				case nameof(EditPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<EditViewModel>();
+					viewModel = serviceProvider.GetRequiredService<EditViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 				case nameof(DeckSettingsPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<DeckSettingsViewModel>();
+					viewModel = serviceProvider.GetRequiredService<DeckSettingsViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 				case nameof(SimulatorPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<SimulatorViewModel>();
+					viewModel = serviceProvider.GetRequiredService<SimulatorViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 				case nameof(HelpPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<HelpViewModel>();
+					viewModel = serviceProvider.GetRequiredService<HelpViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 				case nameof(CongratulationsPage):
-					mainViewModel.CurrentChildPage = serviceProvider.GetRequiredService<CongratulationsViewModel>();
+					viewModel = serviceProvider.GetRequiredService<CongratulationsViewModel>();
+					viewModel.InputData = inputData;
+					mainViewModel.CurrentChildPage = viewModel;
 					break;
 			}
 		}

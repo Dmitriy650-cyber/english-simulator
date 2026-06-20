@@ -2,7 +2,7 @@
 {
 	public interface INavigationService
 	{
-		void NavigateTo(string pageName);
+		void NavigateTo(string pageName, object inputData);
 		void NavigateTo<TViewModel>() where TViewModel : ViewModel;
 	}
 }

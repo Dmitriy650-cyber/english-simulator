@@ -36,7 +36,9 @@
 			if (_serviceProvider != null && DataContext == null && ViewModelType != null && !_isLoadedPage)
 			{
 				DataContext = _serviceProvider.GetRequiredService(ViewModelType);
+				var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
 				_viewModel = (ViewModel)DataContext;
+				_viewModel.InputData = mainViewModel.CurrentChildPage!.InputData;
 
 				OnPageInitialized?.Invoke(null, EventArgs.Empty);
 

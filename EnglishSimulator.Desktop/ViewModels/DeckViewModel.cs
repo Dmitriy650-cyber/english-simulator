@@ -7,8 +7,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 		IMessageBoxService messageBoxService, 
 		INavigationService navigationService, 
 		IDeckRepository deckRepository,
-		IDialogService dialogService,
-		IMessageBusService messageBusService) : ViewModel(messageBoxService), ITransientDependency
+		IDialogService dialogService) : ViewModel(messageBoxService), ITransientDependency
 	{
 		public ObservableCollection<DeckModel> Decks { get; set; } = [];
 
@@ -62,7 +61,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 		/// </summary>
 		public ICommand? StartLessonCommand => new LambdaCommand(() =>
 		{
-			navigationService.NavigateTo(nameof(SimulatorPage));
+			navigationService.NavigateTo(nameof(SimulatorPage), SelectedDeck!.Deck!);
 		}, () => SelectedDeck is not null);
 
 		/// <summary>
@@ -94,9 +93,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 		/// </summary>
 		public ICommand? EditDeckCommand => new LambdaCommand(() =>
 		{
-			navigationService.NavigateTo(nameof(EditPage));
-			messageBusService.Send<DeckViewModelToEditViewModelMessage>(
-				new DeckViewModelToEditViewModelMessage { Deck = SelectedDeck!.Deck! });
+			navigationService.NavigateTo(nameof(EditPage), SelectedDeck!.Deck!);
 		}, () => SelectedDeck is not null);
 
 		/// <summary>

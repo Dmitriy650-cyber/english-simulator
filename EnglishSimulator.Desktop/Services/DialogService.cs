@@ -26,10 +26,20 @@
         {
             var dialog = new SentenceDialogWindow
             {
-                DataContext = new SentenceDialogViewModel(sentence)
+                DataContext = new SentenceDialogViewModel(sentence, this)
             };
 
             return dialog.ShowSentenceDialogWindowAsync();
+        }
+
+        public Task<RecorderDialogMessage?> ShowRecoderDialogWindow()
+        {
+            var dialog = new RecorderDialogWindow
+            {
+                DataContext = new RecorderDialogViewModel()
+            };
+
+            return dialog.ShowRecorderDialogWindowAsync();
         }
     }
 }

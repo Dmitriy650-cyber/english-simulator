@@ -2,12 +2,10 @@
 {
 	public class EditViewModel(
 		IMessageBoxService messageBoxService,
-		IMessageBusService messageBusService,
 		INavigationService navigationService,
-		IDialogService dialogService) : ViewModel(messageBoxService), IDisposable, ITransientDependency
+		IDialogService dialogService,
+		ISentenceRepository sentenceRepository) : ViewModel(messageBoxService), ITransientDependency
 	{
-		private IDisposable? _subscribeToDeckViewModelMessage;
-
 		public ObservableCollection<Sentence> Sentences { get; set; } = [];
 
 		#region Свойства
@@ -35,9 +33,9 @@
 		public override async Task InitializeViewModelAsync()
 		{
 			Caption = "EDITOR";
+			Deck = (Deck)InputData!;
 
-			_subscribeToDeckViewModelMessage = messageBusService
-				.RegisterHandler<DeckViewModelToEditViewModelMessage>(ReceiveDeckViewModelMessage);
+			await GetNewSentencesAsync();
 		}
 
 		#region Команды
@@ -47,52 +45,129 @@
 		/// </summary>
 		public ICommand? GoBackCommand => new LambdaCommand(() =>
 		{
-			navigationService.NavigateTo(nameof(DeckPage));
+			navigationService.NavigateTo(nameof(DeckPage), null!);
 		});
 
 		/// <summary>
 		/// Добавить предложение
 		/// </summary>
-		public ICommand? AddSentenceCommand => new LambdaCommand(() =>
+		public ICommand? AddSentenceCommand => new LambdaCommand(async () =>
 		{
-			var result = dialogService.ShowSentenceDialogAsync(null);
+			var result = await dialogService.ShowSentenceDialogAsync(null);
+
+			if (result is not null)
+			{
+				await MakeRepositoryRequestAsync(async () =>
+				{
+					result.DeckId = Deck!.Id;
+					var response = await sentenceRepository.CreateOrUpdateSentenceAsync(result);
+
+					if (response.IsFail)
+					{
+						MessageBoxService.Error(response.ErrorMessage);
+						return;
+					}
+
+					await GetNewSentencesAsync();
+				});
+			}
 		});
 
 		/// <summary>
 		/// Редактировать предложение
 		/// </summary>
-		public ICommand? EditSentenceCommand => new LambdaCommand(() =>
+		public ICommand? EditSentenceCommand => new LambdaCommand(async () =>
 		{
-			var result = dialogService.ShowSentenceDialogAsync(SelectedSentence!);
+			var result = await dialogService.ShowSentenceDialogAsync(SelectedSentence!);
+
+			if (result is not null)
+			{
+				await MakeRepositoryRequestAsync(async () =>
+				{
+					if (!SelectedSentence!.RussianAudio.Equals(result.RussianAudio))
+						DeleteFile(SelectedSentence!.RussianAudio);
+					if (!SelectedSentence!.EnglishAudio.Equals(result.EnglishAudio))
+						DeleteFile(SelectedSentence!.EnglishAudio);
+
+					SelectedSentence.RussianText = result.RussianText;
+					SelectedSentence.EnglishText = result.EnglishText;
+					SelectedSentence.RussianAudio = result.RussianAudio;
+					SelectedSentence.EnglishAudio = result.EnglishAudio;
+
+					var response = await sentenceRepository.CreateOrUpdateSentenceAsync(SelectedSentence);
+
+					if (response.IsFail)
+					{
+						MessageBoxService.Error(response.ErrorMessage);
+						return;
+					}
+					
+					await GetNewSentencesAsync();
+				});
+			}
 		}, () => SelectedSentence is not null);
 
 		/// <summary>
 		/// Удалить предложение
 		/// </summary>
-		public ICommand? DeleteSentenceCommand => new LambdaCommand(() =>
+		public ICommand? DeleteSentenceCommand => new LambdaCommand(async () =>
 		{
 			var result = dialogService.ShowDialogAsync();
+
+			if (result.Result == true)
+			{
+				await MakeRepositoryRequestAsync(async () =>
+				{
+					var response = await sentenceRepository.DeleteSentenceAsync(SelectedSentence!.Id);
+
+					if (response.IsFail)
+					{
+						MessageBoxService.Error(response.ErrorMessage);
+						return;
+					}
+
+					DeleteFile(SelectedSentence.RussianAudio);
+					DeleteFile(SelectedSentence.EnglishAudio);
+					await GetNewSentencesAsync();
+				});
+			}
 		}, () => SelectedSentence is not null);
 
 		#endregion
 
-		#region Сообщения
+		/// <summary>
+		/// Получить новые предложения
+		/// </summary>
+		/// <returns></returns>
+		public async Task GetNewSentencesAsync()
+		{
+			if (Sentences.Count > 0)
+				Sentences.Clear();
+
+			await MakeRepositoryRequestAsync(async () =>
+			{
+				var response = await sentenceRepository.GetSentencesByDeckId(Deck!.Id);
+
+				if (response.IsFail)
+				{
+					MessageBoxService.Error(response.ErrorMessage);
+					return;
+				}
+
+				Sentences.AddRange(response.Data.OrderBy(n => n.Stage));
+			});
+		}
 
 		/// <summary>
-		/// Получить сообщение от DeckViewModel
+		/// Удалить файл
 		/// </summary>
-		/// <param name="message"></param>
-		private void ReceiveDeckViewModelMessage(DeckViewModelToEditViewModelMessage message)
+		/// <param name="path"></param>
+		private void DeleteFile(string path)
 		{
-			Deck = message.Deck;
-			Sentences.AddRange(Deck.Sentences);
-		} 
-
-		#endregion
-
-		public void Dispose()
-		{
-			_subscribeToDeckViewModelMessage?.Dispose();
+			if (File.Exists(path))
+			{
+				File.Delete(path);
+			}
 		}
 	}
 }

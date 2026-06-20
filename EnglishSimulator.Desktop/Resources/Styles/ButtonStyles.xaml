@@ -154,4 +154,49 @@
         <Setter Property="Height" Value="30" />
     </Style>
 
+    <!--  Toggle Button  -->
+    <Style x:Key="ToggleButton" TargetType="ToggleButton">
+
+        <!--  Toggle Button style  -->
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor1}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0,0,0,5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <!--  Toggle Button style on hover  -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+            <!--  Toggle Button style on checked  -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
 </ResourceDictionary>

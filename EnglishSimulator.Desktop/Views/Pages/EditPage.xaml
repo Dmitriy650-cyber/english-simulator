@@ -122,30 +122,34 @@
         <Grid Grid.Row="2" Margin="20,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="75" />
             </Grid.ColumnDefinitions>
 
             <TextBlock
                 Grid.Column="0"
+                HorizontalAlignment="Center"
                 Foreground="{StaticResource titleColor3}"
-                Text="Phrase" />
+                Text="English phrase" />
 
             <TextBlock
                 Grid.Column="1"
+                HorizontalAlignment="Center"
                 Foreground="{StaticResource titleColor3}"
-                Text="New" />
+                Text="Stage" />
 
             <TextBlock
                 Grid.Column="2"
+                HorizontalAlignment="Center"
                 Foreground="{StaticResource titleColor3}"
-                Text="Learn" />
+                Text="State" />
 
             <TextBlock
                 Grid.Column="3"
+                HorizontalAlignment="Center"
                 Foreground="{StaticResource titleColor3}"
-                Text="Due" />
+                Text="Repeat" />
 
         </Grid>
 
@@ -167,36 +171,39 @@
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="75" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
                             Grid.Column="0"
                             Style="{StaticResource ListViewItemText}"
-                            Text="Deck 1" />
+                            Text="{Binding EnglishText}" />
 
                         <TextBlock
                             Grid.Column="1"
+                            HorizontalAlignment="Center"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color8}"
-                            Text="10" />
+                            Text="{Binding Stage}" />
 
                         <TextBlock
                             Grid.Column="2"
+                            HorizontalAlignment="Center"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color10}"
-                            Text="10" />
+                            Text="{Binding State}" />
 
                         <TextBlock
                             Grid.Column="3"
+                            HorizontalAlignment="Center"
                             FontSize="13.5"
                             FontWeight="Bold"
                             Foreground="{StaticResource color9}"
-                            Text="1" />
+                            Text="{Binding RepeatDate, StringFormat={}{0:dd.MM.yyyy}}" />
 
                     </Grid>
                 </DataTemplate>
@@ -206,7 +213,7 @@
         <Button
             Grid.Row="4"
             Margin="20,0"
-            Content="Settings"
+            Content="Deck Settings"
             Style="{StaticResource Button}"
             Tag="{StaticResource color1}" />
 
