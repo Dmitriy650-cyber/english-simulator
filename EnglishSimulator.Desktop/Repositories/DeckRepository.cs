@@ -10,6 +10,13 @@
 				.ToArrayAsync()
 				.ConfigureAwait(false));
 
+		public async Task<RepositoryResponse<Deck?>> GetDeckByIdAsync(int id) =>
+			RepositoryResponse<Deck?>.Success(await context.Decks
+				.Include(n => n.Sentences)
+				.Include(n => n.RepetitionIntervals)
+				.FirstOrDefaultAsync(n => n.Id == id)
+				.ConfigureAwait(false));
+
 		public async Task<RepositoryResponse<Deck>> CreateOrUpdateDeckAsync(Deck model)
 		{
 			try

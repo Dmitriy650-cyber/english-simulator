@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows
+﻿namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для RepetitionIntervalsDialogWindow.xaml
@@ -21,5 +9,37 @@ namespace EnglishSimulator.Desktop.Views.Windows.DialogWindows
         {
             InitializeComponent();
         }
+
+		public Task<List<RepetitionInterval>?> ShowRepetitionIntervalsDialogWindowAsync()
+		{
+			var taskCompletionSource =
+				new TaskCompletionSource<List<RepetitionInterval>?>();
+
+			RepetitionIntervalsDialogViewModel viewModel = (RepetitionIntervalsDialogViewModel)DataContext;
+			if (viewModel is { })
+			{
+				viewModel.Closed += (success) =>
+				{
+					if (success)
+					{
+						taskCompletionSource.SetResult(viewModel.RepetitionIntervals);
+					}
+					else
+					{
+						taskCompletionSource.SetResult(null);
+					}
+					this.Close();
+				};
+			}
+
+			this.ShowDialog();
+			return taskCompletionSource.Task;
+		}
+
+		private void pnlControlBar_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+				DragMove();
+		}
     }
 }

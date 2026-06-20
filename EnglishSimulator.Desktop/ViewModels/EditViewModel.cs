@@ -4,7 +4,9 @@
 		IMessageBoxService messageBoxService,
 		INavigationService navigationService,
 		IDialogService dialogService,
-		ISentenceRepository sentenceRepository) : ViewModel(messageBoxService), ITransientDependency
+		ISentenceRepository sentenceRepository,
+		IRepetitionIntervalRepository repetitionIntervalRepository,
+		IDeckRepository deckRepository) : ViewModel(messageBoxService), ITransientDependency
 	{
 		public ObservableCollection<Sentence> Sentences { get; set; } = [];
 
@@ -132,6 +134,45 @@
 				});
 			}
 		}, () => SelectedSentence is not null);
+
+		/// <summary>
+		/// Настроить временные интервалы
+		/// </summary>
+		public ICommand? SetUpTimeIntervalsCommand => new LambdaCommand(async () =>
+		{
+			var result = await dialogService.ShowRepetitionIntervalsDialogWindow(Deck!);
+
+			if (result is not null)
+			{
+				foreach (var interval in result)
+				{
+					await MakeRepositoryRequestAsync(async () =>
+					{
+						var response = await repetitionIntervalRepository.UpdateRepetitionIntervalAsync(interval);
+
+						if (response.IsFail)
+						{
+							MessageBoxService.Error(response.ErrorMessage);
+							return;
+						}
+					});
+				}
+
+				await MakeRepositoryRequestAsync(async () =>
+				{
+					var deckResponse = await deckRepository.GetDeckByIdAsync(Deck!.Id);
+
+					if (deckResponse.IsFail)
+					{
+						MessageBoxService.Error(deckResponse.ErrorMessage);
+						return;
+					}
+
+					if (deckResponse.Data is { })
+						Deck = deckResponse.Data;
+				});
+			}
+		});
 
 		#endregion
 

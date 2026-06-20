@@ -213,7 +213,8 @@
         <Button
             Grid.Row="4"
             Margin="20,0"
-            Content="Deck Settings"
+            Command="{Binding SetUpTimeIntervalsCommand}"
+            Content="Set up time intervals"
             Style="{StaticResource Button}"
             Tag="{StaticResource color1}" />
 

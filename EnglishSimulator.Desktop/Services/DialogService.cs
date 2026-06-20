@@ -41,5 +41,15 @@
 
             return dialog.ShowRecorderDialogWindowAsync();
         }
+
+        public Task<List<RepetitionInterval>?> ShowRepetitionIntervalsDialogWindow(Deck deck)
+        {
+            var dialog = new RepetitionIntervalsDialogWindow
+            {
+                DataContext = new RepetitionIntervalsDialogViewModel(deck)
+            };
+
+            return dialog.ShowRepetitionIntervalsDialogWindowAsync();
+        }
     }
 }
