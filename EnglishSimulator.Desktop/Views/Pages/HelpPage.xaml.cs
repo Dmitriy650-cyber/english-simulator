@@ -1,4 +1,6 @@
-﻿namespace EnglishSimulator.Desktop.Views.Pages
+﻿using System.Diagnostics;
+
+namespace EnglishSimulator.Desktop.Views.Pages
 {
 	/// <summary>
 	/// Логика взаимодействия для HelpPage.xaml
@@ -9,5 +11,10 @@
 		{
 			InitializeComponent();
 		}
-	}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/Dmitriy650-cyber") { UseShellExecute = true });
+		}
+    }
 }

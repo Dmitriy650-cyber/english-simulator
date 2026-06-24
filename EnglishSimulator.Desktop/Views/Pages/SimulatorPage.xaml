@@ -8,9 +8,10 @@
     xmlns:local="clr-namespace:EnglishSimulator.Desktop.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels"
+    d:DataContext="{d:DesignInstance Type=vm:SimulatorViewModel,
+                                     IsDesignTimeCreatable=False}"
     d:DesignHeight="530"
     d:DesignWidth="800"
-    DataContext="{Binding SimulatorViewModel, Source={StaticResource Locator}}"
     ViewModelType="{x:Type vm:SimulatorViewModel}"
     mc:Ignorable="d">
 
@@ -37,7 +38,8 @@
                 Orientation="Horizontal">
 
                 <Button
-                    Margin="10,0,10,0"
+                    Margin="20,0,10,0"
+                    Command="{Binding BackCommand}"
                     Style="{StaticResource CircleButton}"
                     Tag="{StaticResource color3}">
                     <fa:IconImage
@@ -66,7 +68,7 @@
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="{StaticResource color9}"
-                    Text="1" />
+                    Text="{Binding CountLearnedSentences}" />
 
                 <TextBlock
                     Margin="10,0"
@@ -79,7 +81,7 @@
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="{StaticResource color4}"
-                    Text="50" />
+                    Text="{Binding CountNewSentences}" />
 
             </StackPanel>
 
@@ -91,7 +93,10 @@
                 FlowDirection="RightToLeft"
                 Orientation="Horizontal">
 
-                <Button Style="{StaticResource iconButton}" Tag="{StaticResource color1}">
+                <Button
+                    Command="{Binding GoToHelpPageCommand}"
+                    Style="{StaticResource iconButton}"
+                    Tag="{StaticResource color1}">
                     <fa:IconImage
                         Width="12"
                         Height="12"
@@ -119,65 +124,109 @@
             Margin="20,0"
             HorizontalAlignment="Center"
             Foreground="{StaticResource titleColor3}"
-            Text="Some text" />
+            Text="{Binding TextInfo}" />
 
-        <ListView
-            Grid.Row="2"
-            Margin="10,0"
-            HorizontalContentAlignment="Stretch"
-            Background="Transparent"
-            BorderThickness="0"
-            ItemsSource="{Binding TestItems}">
-            <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
-                    <Setter Property="Tag" Value="{StaticResource color2}" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="50" />
-                        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="2" Margin="10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-                        <TextBlock
-                            Grid.Column="0"
-                            Style="{StaticResource ListViewItemText}"
-                            Text="Deck 1" />
+            <ToggleButton
+                Grid.Row="0"
+                Content="{Binding Text1}"
+                IsChecked="{Binding ToggleButton1Selected}"
+                IsEnabled="{Binding ToggleButton1IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color1}" />
 
-                        <TextBlock
-                            Grid.Column="1"
-                            FontSize="13.5"
-                            FontWeight="Bold"
-                            Foreground="{StaticResource color8}"
-                            Text="10" />
+            <ToggleButton
+                Grid.Row="1"
+                Content="{Binding Text2}"
+                IsChecked="{Binding ToggleButton2Selected}"
+                IsEnabled="{Binding ToggleButton2IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color2}" />
 
-                        <TextBlock
-                            Grid.Column="2"
-                            FontSize="13.5"
-                            FontWeight="Bold"
-                            Foreground="{StaticResource color10}"
-                            Text="10" />
+            <ToggleButton
+                Grid.Row="2"
+                Content="{Binding Text3}"
+                IsChecked="{Binding ToggleButton3Selected}"
+                IsEnabled="{Binding ToggleButton3IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color3}" />
 
-                        <TextBlock
-                            Grid.Column="3"
-                            FontSize="13.5"
-                            FontWeight="Bold"
-                            Foreground="{StaticResource color9}"
-                            Text="1" />
+            <ToggleButton
+                Grid.Row="3"
+                Content="{Binding Text4}"
+                IsChecked="{Binding ToggleButton4Selected}"
+                IsEnabled="{Binding ToggleButton4IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color4}" />
 
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <ToggleButton
+                Grid.Row="4"
+                Content="{Binding Text5}"
+                IsChecked="{Binding ToggleButton5Selected}"
+                IsEnabled="{Binding ToggleButton5IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color5}" />
+
+            <ToggleButton
+                Grid.Row="5"
+                Content="{Binding Text6}"
+                IsChecked="{Binding ToggleButton6Selected}"
+                IsEnabled="{Binding ToggleButton6IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color6}" />
+
+            <ToggleButton
+                Grid.Row="6"
+                Content="{Binding Text7}"
+                IsChecked="{Binding ToggleButton7Selected}"
+                IsEnabled="{Binding ToggleButton7IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color7}" />
+
+            <ToggleButton
+                Grid.Row="7"
+                Content="{Binding Text8}"
+                IsChecked="{Binding ToggleButton8Selected}"
+                IsEnabled="{Binding ToggleButton8IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color8}" />
+
+            <ToggleButton
+                Grid.Row="8"
+                Content="{Binding Text9}"
+                IsChecked="{Binding ToggleButton9Selected}"
+                IsEnabled="{Binding ToggleButton9IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color9}" />
+
+            <ToggleButton
+                Grid.Row="9"
+                Content="{Binding Text10}"
+                IsChecked="{Binding ToggleButton10Selected}"
+                IsEnabled="{Binding ToggleButton10IsEnabled}"
+                Style="{StaticResource SentenceToggleButton}"
+                Tag="{StaticResource color10}" />
+
+        </Grid>
 
         <Button
             Grid.Row="3"
             Margin="20,0"
-            Content="Settings"
+            Command="{Binding StartCommand}"
+            Content="{Binding ButtonStartText}"
             Style="{StaticResource Button}"
             Tag="{StaticResource color1}" />
 

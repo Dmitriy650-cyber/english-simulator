@@ -199,4 +199,111 @@
 
     </Style>
 
+    <!--  Sentence Toggle Button  -->
+    <Style x:Key="SentenceToggleButton" TargetType="ToggleButton">
+
+        <!--  Sentence Toggle Button style  -->
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border
+                        Padding="5,0"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="5,0,0,0">
+                        <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <!--  Sentence Toggle Button style on hover  -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+            <!--  Sentence Toggle Button style on checked  -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+            <!--  Sentence Toggle Button style on enabled  -->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="1" />
+            </Trigger>
+
+            <!--  Setence Toggle Button style on enabled and checked  -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </MultiTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--  Light Button  -->
+    <Style x:Key="LightButton" TargetType="Button">
+
+        <!--  Light Button style  -->
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0,0,0,4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <!--  Light Button style on hover  -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+
+            <!--  Light Button style on pressed  -->
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource panelActiveColor}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
 </ResourceDictionary>

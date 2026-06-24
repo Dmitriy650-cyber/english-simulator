@@ -10,7 +10,7 @@
     Title="DialogWindow"
     Width="600"
     Height="200"
-    d:DataContext="{d:DesignInstance Type=vm:InputDialogViewModel,
+    d:DataContext="{d:DesignInstance Type=vm:DialogViewModel,
                                      IsDesignTimeCreatable=False}"
     AllowsTransparency="True"
     Background="Transparent"
@@ -73,7 +73,9 @@
                 VerticalAlignment="Center"
                 FontSize="22"
                 Foreground="{StaticResource titleColor1}"
-                Text="{Binding Question}" />
+                Text="{Binding Question}"
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
 
             <Grid
                 Grid.Row="2"

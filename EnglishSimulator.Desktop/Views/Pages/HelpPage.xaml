@@ -4,12 +4,157 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:basepage="clr-namespace:EnglishSimulator.Desktop.Views.Pages.Base"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:local="clr-namespace:EnglishSimulator.Desktop.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:EnglishSimulator.Desktop.ViewModels"
+    d:DataContext="{d:DesignInstance Type=vm:HelpViewModel,
+                                     IsDesignTimeCreatable=False}"
     d:DesignHeight="495"
     d:DesignWidth="800"
     ViewModelType="{x:Type vm:HelpViewModel}"
     mc:Ignorable="d">
-    <Grid />
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  Header / Caption  -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--  Caption  -->
+            <StackPanel
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Button
+                    Margin="20,0,10,0"
+                    Command="{Binding GoBackCommand}"
+                    Style="{StaticResource CircleButton}"
+                    Tag="{StaticResource color3}">
+                    <fa:IconImage
+                        Width="34"
+                        Height="34"
+                        Icon="ArrowCircleLeft"
+                        Style="{StaticResource CircleButtonIcon}" />
+                </Button>
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="Medium"
+                    Foreground="{StaticResource titleColor2}"
+                    Text="ENGLISH SIMULATOR" />
+
+            </StackPanel>
+
+            <!--  Header  -->
+            <StackPanel
+                Grid.Column="1"
+                Margin="0,0,18,0"
+                VerticalAlignment="Center"
+                FlowDirection="RightToLeft"
+                Orientation="Horizontal">
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="Medium"
+                    Foreground="{StaticResource titleColor3}"
+                    Text="{Binding Caption}" />
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="{StaticResource titleColor1}"
+                Text="Description" />
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+
+                <TextBlock
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="This application is designed to facilitate the learning and memorization of English vocabulary. It provides users with a structured method to build and reinforce their language skills through spaced repetition techniques."
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Margin="10,0,10,10"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="The core functionality involves creating custom decks of flashcards, each containing sentences or words in both Russian and English. Users can input and record these phrases, and importantly, the application requires audio pronunciation for each sentence to enhance auditory learning."
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Margin="10,0,10,10"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="Once the decks are prepared, users can initiate training sessions. During these sessions, the application will play audio of the Russian sentence, prompting the user to translate it into English. The English translation is also played aloud to assist with pronunciation and comprehension. The user then verifies their own response."
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Margin="10,0,10,10"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="The system employs an intelligent spaced repetition algorithm: if the user answers correctly, the corresponding phrase will be scheduled for review after a longer interval during subsequent sessions. Conversely, if the answer is incorrect, the phrase is reset to the beginning of the review cycle, ensuring it is revisited more frequently until mastery is achieved."
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Margin="10,0,10,10"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="This approach is grounded in the principles of interval training, aiming to optimize memorization efficiency and long-term retention of vocabulary. Overall, the application provides an effective and personalized tool for language learners to systematically expand their English vocabulary and improve their language skills."
+                    TextWrapping="Wrap" />
+
+            </StackPanel>
+
+            <TextBlock
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="{StaticResource titleColor1}"
+                Text="Designer and Developer" />
+
+            <Button
+                Grid.Row="3"
+                Margin="10,4"
+                Click="Button_Click"
+                Content="Dmitriy Babkov"
+                Style="{StaticResource LightButton}"
+                Tag="{StaticResource color3}" />
+
+        </Grid>
+
+    </Grid>
+
 </basepage:BasePage>

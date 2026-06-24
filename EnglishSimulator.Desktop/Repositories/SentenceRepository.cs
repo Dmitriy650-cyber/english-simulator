@@ -99,7 +99,7 @@
 			}
 		}
 
-		public async Task<RepositoryResponse> ResetStageAsync(int id)
+		public async Task<RepositoryResponse> ResetStageAsync(int id, int deckId)
 		{
 			try
 			{
@@ -110,8 +110,12 @@
 				if (!sentence.State.Equals(nameof(SentenceState.New)))
 					sentence.State = nameof(SentenceState.Learn);
 
+				var stateZero = await context.RepetitionIntervals
+					.AsNoTracking()
+					.FirstAsync(n => n.DeckId == deckId && n.Stage == 0);
+
 				sentence.Stage = 0;
-				sentence.RepeatDate = DateTime.Now.AddDays(1).Date;
+				sentence.RepeatDate = DateTime.Now.AddDays(stateZero.CountDays).Date;
 
 				await context.SaveChangesAsync().ConfigureAwait(false);
 

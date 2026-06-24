@@ -19,11 +19,6 @@
 					viewModel.InputData = inputData;
 					mainViewModel.CurrentChildPage = viewModel;
 					break;
-				case nameof(DeckSettingsPage):
-					viewModel = serviceProvider.GetRequiredService<DeckSettingsViewModel>();
-					viewModel.InputData = inputData;
-					mainViewModel.CurrentChildPage = viewModel;
-					break;
 				case nameof(SimulatorPage):
 					viewModel = serviceProvider.GetRequiredService<SimulatorViewModel>();
 					viewModel.InputData = inputData;

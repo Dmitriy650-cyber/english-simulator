@@ -46,9 +46,9 @@ namespace EnglishSimulator.Desktop.ViewModels
 				{
 					var deckModel = new DeckModel();
 					deckModel.Deck = deck;
-					deckModel.CountNewSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.New)).Count();
-					deckModel.CountLearnSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Learn)).Count();
-					deckModel.CountDueSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Due)).Count();
+					deckModel.CountNewSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.New) && n.RepeatDate < DateTime.Now).Count();
+					deckModel.CountLearnSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Learn) && n.RepeatDate < DateTime.Now).Count();
+					deckModel.CountDueSentences = deck.Sentences.Where(n => n.State == nameof(SentenceState.Due) && n.RepeatDate < DateTime.Now).Count();
 					Decks.Add(deckModel);
 				}
 			});
@@ -57,11 +57,29 @@ namespace EnglishSimulator.Desktop.ViewModels
 		#region Команды
 
 		/// <summary>
+		/// Перейти на страницу помощи
+		/// </summary>
+		public ICommand? GoToHelpPageCommand => new LambdaCommand(() =>
+		{
+			navigationService.NavigateTo(nameof(HelpPage), null!);
+		});
+
+		/// <summary>
 		/// Начать урок
 		/// </summary>
-		public ICommand? StartLessonCommand => new LambdaCommand(() =>
+		public ICommand? StartLessonCommand => new LambdaCommand(async () =>
 		{
-			navigationService.NavigateTo(nameof(SimulatorPage), SelectedDeck!.Deck!);
+			if (SelectedDeck!.CountNewSentences == 0
+				&& SelectedDeck.CountDueSentences == 0
+				&& SelectedDeck.CountLearnSentences == 0)
+			{
+				var result = await dialogService.ShowDialogAsync("There are no available sentences for training at the moment. Repeat mode will be enabled. Do you agree?");
+
+				if (result == false)
+					return;
+			}
+
+			navigationService.NavigateTo(nameof(SimulatorPage), SelectedDeck.Deck!);
 		}, () => SelectedDeck is not null);
 
 		/// <summary>

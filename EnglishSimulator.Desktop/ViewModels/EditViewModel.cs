@@ -43,6 +43,14 @@
 		#region Команды
 
 		/// <summary>
+		/// Перейти на страницу помощи
+		/// </summary>
+		public ICommand? GoToHelpPageCommand => new LambdaCommand(() =>
+		{
+			navigationService.NavigateTo(nameof(HelpPage), null!);
+		});
+
+		/// <summary>
 		/// Вернуться на страницу DeckPage
 		/// </summary>
 		public ICommand? GoBackCommand => new LambdaCommand(() =>

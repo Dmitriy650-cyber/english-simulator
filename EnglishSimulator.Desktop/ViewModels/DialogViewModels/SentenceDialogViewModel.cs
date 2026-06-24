@@ -147,7 +147,7 @@
             using var writer = new WaveFileWriter(filePath, waveFormat);
             writer.Write(audioData, 0, audioData.Length);
 
-            return filePath;
+            return Path.GetFileName(filePath);
         }
 
         /// <summary>
