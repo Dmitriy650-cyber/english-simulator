@@ -279,7 +279,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 			}
 			Sentences.AddRange(EnumerableExtensions.Shuffle(sentences));
 			CountNewSentences = Sentences.Count;
-			Speed = 0;
+			Speed = 1;
 		}
 
 		#region Команды
@@ -380,16 +380,16 @@ namespace EnglishSimulator.Desktop.ViewModels
 
 						isButtonSelected!.SetValue(this, true);
 
-						await Task.Delay(Speed * 500, token);
+						await Task.Delay(ReverseSpeed(Speed) * 500, token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
 						// Читаем на русском
-						await audioPlayerService.PlayWavFileAsync(GetAudioFileFullPath(sentence.RussianAudio), token);
+						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.RussianAudio), token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
-						await Task.Delay(Speed * 500, token);
+						await Task.Delay(ReverseSpeed(Speed) * 500, token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
@@ -398,16 +398,16 @@ namespace EnglishSimulator.Desktop.ViewModels
 						{
 							button!.SetValue(this, sentence.EnglishText);
 						});
-						await audioPlayerService.PlayWavFileAsync(GetAudioFileFullPath(sentence.EnglishAudio), token);
+						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.EnglishAudio), token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
-						await Task.Delay(Speed * 500, token);
+						await Task.Delay(ReverseSpeed(Speed) * 500, token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
 						// Читаем на английском
-						await audioPlayerService.PlayWavFileAsync(GetAudioFileFullPath(sentence.EnglishAudio), token);
+						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.EnglishAudio), token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
@@ -426,12 +426,12 @@ namespace EnglishSimulator.Desktop.ViewModels
 
 						isButtonSelected!.SetValue(this, true);
 
-						await Task.Delay(Speed * 500, token);
+						await Task.Delay(ReverseSpeed(Speed) * 500, token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
 						// Читаем на английском
-						await audioPlayerService.PlayWavFileAsync(GetAudioFileFullPath(sentence.EnglishAudio), token);
+						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.EnglishAudio), token);
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
@@ -459,6 +459,27 @@ namespace EnglishSimulator.Desktop.ViewModels
 		}
 
 		/// <summary>
+		/// Реверсировать значение скорости
+		/// </summary>
+		/// <param name="speed"></param>
+		/// <returns></returns>
+		private static int ReverseSpeed(int speed)
+		{
+			var result = speed switch
+			{
+				0 => 5,
+				1 => 4,
+				2 => 3,
+				3 => 2,
+				4 => 1,
+				5 => 0,
+				_ => 0
+			};
+
+			return result;
+		}
+
+		/// <summary>
 		/// Узнать, какие предложения пользователь знает, а какие нет. Составить дальнейшую программу
 		/// </summary>
 		private async Task TestKnowledgeAsync()
@@ -471,7 +492,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 				{
 					foreach (var sentence in learnedSentences)
 					{
-						if (_failedSentences.Contains(sentence))
+						if (_failedSentences.FirstOrDefault(n => n.Id == sentence.Id) is { })
 							return;
 
 						var response = await sentenceRepository.SetNextStageAsync(sentence.Id);
@@ -485,7 +506,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 
 					foreach (var sentence in dontLearnedSentences)
 					{
-						if (_failedSentences.Contains(sentence))
+						if (_failedSentences.FirstOrDefault(n => n.Id == sentence.Id) is { })
 							return;
 
 						var response = await sentenceRepository.ResetStageAsync(sentence.Id, Deck!.Id);
@@ -565,14 +586,6 @@ namespace EnglishSimulator.Desktop.ViewModels
 			foreach (var sentences in _currentSentences)
 				Sentences.Remove(sentences);
 		}
-
-		/// <summary>
-		/// Получить полный путь к аудиофалу
-		/// </summary>
-		/// <param name="audioFileName"></param>
-		/// <returns></returns>
-		private string GetAudioFileFullPath(string audioFileName) =>
-			Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AudioFiles", audioFileName);
 
 		/// <summary>
 		/// Получить предложение по номеру

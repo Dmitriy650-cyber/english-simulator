@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Resources/Styles/AppColors.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/ButtonStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/ListViewStyles.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/SliderStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <locator:ViewModelLocator x:Key="Locator" />
         </ResourceDictionary>

@@ -1,4 +1,6 @@
-﻿namespace EnglishSimulator.Desktop.Repositories
+﻿using EnglishSimulator.Desktop.Services;
+
+namespace EnglishSimulator.Desktop.Repositories
 {
 	public class DeckRepository(DataContext context) : IDeckRepository, ISingletonDependency
 	{
@@ -70,8 +72,17 @@
 				if (deck is null)
 					return RepositoryResponse.Fail("Deck not found");
 
+				List<Sentence> sentences = [];
+				sentences.AddRange(deck.Sentences);
+
 				context.Decks.Remove(deck);
 				await context.SaveChangesAsync().ConfigureAwait(false);
+
+				foreach(var sentence in sentences)
+				{
+					FileService.DeleteAudioFile(sentence.RussianAudio);
+					FileService.DeleteAudioFile(sentence.EnglishAudio);
+				}
 
 				return RepositoryResponse.Success();
 			}
@@ -81,6 +92,11 @@
 			}
 		}
 
+		/// <summary>
+		/// Получить стандартные интервалы
+		/// </summary>
+		/// <param name="deckId"></param>
+		/// <returns></returns>
 		private RepetitionInterval[] GetStandartRepetitionIntervals(int deckId) => [
 			new RepetitionInterval{
 				Stage = 0,

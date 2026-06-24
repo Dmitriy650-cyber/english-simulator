@@ -11,11 +11,11 @@ global using EnglishSimulator.Desktop.Services.Interfaces;
 global using EnglishSimulator.Desktop.Common.Extensions;
 global using EnglishSimulator.Desktop.Views.Pages.Base;
 global using EnglishSimulator.Desktop.ViewModels.Base;
-global using EnglishSimulator.Desktop.Models.Messages;
 global using EnglishSimulator.Desktop.Data.Entities;
 global using EnglishSimulator.Desktop.Data.Models;
 global using EnglishSimulator.Desktop.Views.Pages;
 global using EnglishSimulator.Desktop.ViewModels;
+global using EnglishSimulator.Desktop.Services;
 global using EnglishSimulator.Desktop.Data;
 
 global using Microsoft.Extensions.DependencyInjection;

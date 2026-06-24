@@ -163,6 +163,8 @@
             Background="Transparent"
             BorderThickness="0"
             ItemsSource="{Binding Sentences}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedSentence}">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
@@ -173,7 +175,7 @@
                 <DataTemplate>
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="75" />
                             <ColumnDefinition Width="75" />
                             <ColumnDefinition Width="75" />
@@ -182,7 +184,9 @@
                         <TextBlock
                             Grid.Column="0"
                             Style="{StaticResource ListViewItemText}"
-                            Text="{Binding EnglishText}" />
+                            Text="{Binding EnglishText}"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
 
                         <TextBlock
                             Grid.Column="1"

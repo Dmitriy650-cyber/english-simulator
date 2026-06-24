@@ -162,6 +162,8 @@
             Background="Transparent"
             BorderThickness="0"
             ItemsSource="{Binding Decks}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedDeck}">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource ListViewItem}" TargetType="ListViewItem">
@@ -172,7 +174,7 @@
                 <DataTemplate>
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="50" />
@@ -181,7 +183,9 @@
                         <TextBlock
                             Grid.Column="0"
                             Style="{StaticResource ListViewItemText}"
-                            Text="{Binding Deck.Name}" />
+                            Text="{Binding Deck.Name}"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
 
                         <TextBlock
                             Grid.Column="1"

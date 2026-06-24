@@ -231,6 +231,7 @@
             <!--  Sentence Toggle Button style on hover  -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="FontSize" Value="19" />
                 <Setter Property="Background" Value="{StaticResource panelOverColor}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
@@ -238,6 +239,7 @@
             <!--  Sentence Toggle Button style on checked  -->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="FontSize" Value="19" />
                 <Setter Property="Background" Value="{StaticResource panelOverColor}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
@@ -255,6 +257,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Opacity" Value="1" />
                 <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="FontSize" Value="19" />
                 <Setter Property="Background" Value="{StaticResource panelOverColor}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </MultiTrigger>

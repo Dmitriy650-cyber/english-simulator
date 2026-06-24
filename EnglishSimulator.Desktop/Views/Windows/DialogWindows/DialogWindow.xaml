@@ -38,71 +38,72 @@
                     <GradientStop Offset="1" Color="{StaticResource primaryBackColor2}" />
                 </LinearGradientBrush>
             </Border.Background>
-        </Border>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <StackPanel
-                x:Name="pnlControlBar"
-                Grid.Row="0"
-                Margin="0,0,5,0"
-                Background="Transparent"
-                FlowDirection="RightToLeft"
-                MouseDown="pnlControlBar_MouseDown"
-                Orientation="Horizontal">
+                <StackPanel
+                    x:Name="pnlControlBar"
+                    Grid.Row="0"
+                    Margin="0,0,5,0"
+                    Background="Transparent"
+                    FlowDirection="RightToLeft"
+                    MouseDown="pnlControlBar_MouseDown"
+                    Orientation="Horizontal">
 
-                <Button
-                    x:Name="btnClose"
-                    Command="{Binding CancelCommand}"
-                    Style="{StaticResource controlButton}"
-                    Tag="{StaticResource color4}">
-                    <fa:IconImage Icon="Xmark" Style="{StaticResource contolButtonIcon}" />
-                </Button>
+                    <Button
+                        x:Name="btnClose"
+                        Command="{Binding CancelCommand}"
+                        Style="{StaticResource controlButton}"
+                        Tag="{StaticResource color4}">
+                        <fa:IconImage Icon="Xmark" Style="{StaticResource contolButtonIcon}" />
+                    </Button>
 
-            </StackPanel>
+                </StackPanel>
 
-            <TextBlock
-                Grid.Row="1"
-                Margin="10,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="22"
-                Foreground="{StaticResource titleColor1}"
-                Text="{Binding Question}"
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="22"
+                    Foreground="{StaticResource titleColor1}"
+                    Text="{Binding Question}"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
 
-            <Grid
-                Grid.Row="2"
-                Margin="10,0"
-                VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Row="2"
+                    Margin="10,0"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <Button
-                    Grid.Column="0"
-                    Command="{Binding CancelCommand}"
-                    Content="Cancel"
-                    Style="{StaticResource Button}"
-                    Tag="{StaticResource color4}" />
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding CancelCommand}"
+                        Content="Cancel"
+                        Style="{StaticResource Button}"
+                        Tag="{StaticResource color4}" />
 
-                <Button
-                    Grid.Column="1"
-                    Command="{Binding OkCommand}"
-                    Content="Ok"
-                    Style="{StaticResource Button}"
-                    Tag="{StaticResource color9}" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding OkCommand}"
+                        Content="Ok"
+                        Style="{StaticResource Button}"
+                        Tag="{StaticResource color9}" />
+
+                </Grid>
 
             </Grid>
 
-        </Grid>
+        </Border>
 
     </Grid>
 

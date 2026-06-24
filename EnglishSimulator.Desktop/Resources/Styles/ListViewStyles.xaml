@@ -8,6 +8,7 @@
 
         <!--  ListViewItem style  -->
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
         <Setter Property="Template">

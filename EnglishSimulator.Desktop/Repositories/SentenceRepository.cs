@@ -55,8 +55,14 @@
 				if (sentence is null)
 					return RepositoryResponse.Fail("Sentence not found");
 
+				var russianAudio = sentence.RussianAudio;
+				var englishAudio = sentence.EnglishAudio;
+
 				context.Sentences.Remove(sentence);
 				await context.SaveChangesAsync().ConfigureAwait(false);
+
+				FileService.DeleteAudioFile(russianAudio);
+				FileService.DeleteAudioFile(englishAudio);
 
 				return RepositoryResponse.Success();
 			}
