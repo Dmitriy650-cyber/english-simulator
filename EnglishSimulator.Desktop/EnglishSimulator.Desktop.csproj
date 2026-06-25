@@ -7,11 +7,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <StartupObject>EnglishSimulator.Desktop.Program</StartupObject>
+    <ApplicationIcon>Turbomilk-Underwater-Documents.128.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Turbomilk-Underwater-Documents.128.ico" />
   </ItemGroup>
 
   <ItemGroup>
