@@ -1,6 +1,4 @@
-﻿using EnglishSimulator.Desktop.Services;
-
-namespace EnglishSimulator.Desktop.Repositories
+﻿namespace EnglishSimulator.Desktop.Repositories
 {
 	public class DeckRepository(DataContext context) : IDeckRepository, ISingletonDependency
 	{

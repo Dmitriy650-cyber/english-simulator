@@ -104,12 +104,11 @@
                     <TextBlock
                         FontSize="13.5"
                         Foreground="{StaticResource titleColor1}"
-                        Text="CHOOSE/CREATE RUSSIAN AUDIO" />
+                        Text="CREATE RUSSIAN AUDIO" />
 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="9*" />
-                            <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
@@ -133,17 +132,6 @@
 
                         <Button
                             Grid.Column="1"
-                            Style="{StaticResource iconButton}"
-                            Tag="{StaticResource color1}">
-                            <fa:IconImage
-                                Width="20"
-                                Height="20"
-                                Icon="FileAudio"
-                                Style="{StaticResource iconButtonIcon}" />
-                        </Button>
-
-                        <Button
-                            Grid.Column="2"
                             Command="{Binding CreateRussianAudioCommand}"
                             Style="{StaticResource iconButton}"
                             Tag="{StaticResource color3}">
@@ -194,13 +182,13 @@
                     <TextBlock
                         FontSize="13.5"
                         Foreground="{StaticResource titleColor1}"
-                        Text="CHOOSE/CREATE ENGLISH AUDIO" />
+                        Text="CREATE ENGLISH AUDIO" />
 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="9*" />
                             <ColumnDefinition />
-                            <ColumnDefinition />
+
                         </Grid.ColumnDefinitions>
 
                         <TextBox
@@ -223,17 +211,6 @@
 
                         <Button
                             Grid.Column="1"
-                            Style="{StaticResource iconButton}"
-                            Tag="{StaticResource color1}">
-                            <fa:IconImage
-                                Width="20"
-                                Height="20"
-                                Icon="FileAudio"
-                                Style="{StaticResource iconButtonIcon}" />
-                        </Button>
-
-                        <Button
-                            Grid.Column="2"
                             Command="{Binding CreateEnglishAudioCommand}"
                             Style="{StaticResource iconButton}"
                             Tag="{StaticResource color3}">

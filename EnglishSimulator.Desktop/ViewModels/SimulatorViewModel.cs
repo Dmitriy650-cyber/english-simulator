@@ -279,7 +279,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 			}
 			Sentences.AddRange(EnumerableExtensions.Shuffle(sentences));
 			CountNewSentences = Sentences.Count;
-			Speed = 1;
+			Speed = 2;
 		}
 
 		#region Команды
@@ -393,14 +393,16 @@ namespace EnglishSimulator.Desktop.ViewModels
 						token.ThrowIfCancellationRequested();
 						_pauseEvent!.Wait(token);
 
-						// Устанавливает английский текст и читаем на английском
+						// Читаем на английском
+						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.EnglishAudio), token);
+						token.ThrowIfCancellationRequested();
+						_pauseEvent!.Wait(token);
+
+						// Устанавливает английский текст
 						await Application.Current.Dispatcher.InvokeAsync(async () =>
 						{
 							button!.SetValue(this, sentence.EnglishText);
 						});
-						await audioPlayerService.PlayWavFileAsync(FileService.GetAudioFileFullPath(sentence.EnglishAudio), token);
-						token.ThrowIfCancellationRequested();
-						_pauseEvent!.Wait(token);
 
 						await Task.Delay(ReverseSpeed(Speed) * 500, token);
 						token.ThrowIfCancellationRequested();
@@ -493,7 +495,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 					foreach (var sentence in learnedSentences)
 					{
 						if (_failedSentences.FirstOrDefault(n => n.Id == sentence.Id) is { })
-							return;
+							continue;
 
 						var response = await sentenceRepository.SetNextStageAsync(sentence.Id);
 
@@ -507,7 +509,7 @@ namespace EnglishSimulator.Desktop.ViewModels
 					foreach (var sentence in dontLearnedSentences)
 					{
 						if (_failedSentences.FirstOrDefault(n => n.Id == sentence.Id) is { })
-							return;
+							continue;
 
 						var response = await sentenceRepository.ResetStageAsync(sentence.Id, Deck!.Id);
 

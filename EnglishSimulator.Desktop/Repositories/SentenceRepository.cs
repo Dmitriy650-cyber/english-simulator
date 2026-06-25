@@ -31,6 +31,12 @@
 					if (sentence is null)
 						return RepositoryResponse<Sentence>.Fail("Sentence not found");
 
+					if (!sentence.RussianAudio.Equals(model.RussianAudio))
+						FileService.DeleteAudioFile(sentence.RussianAudio);
+
+					if (!sentence.EnglishAudio.Equals(model.EnglishAudio))
+						FileService.DeleteAudioFile(sentence.EnglishAudio);
+
 					sentence.RussianText = model.RussianText;
 					sentence.EnglishText = model.EnglishText;
 					sentence.RussianAudio = model.RussianAudio;
